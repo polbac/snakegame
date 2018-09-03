@@ -19,7 +19,7 @@ INSTALL
 ```
 cd ./server && npm install
 ```
-
+RUN
 ```
 cd ./server && npm start
 ```
