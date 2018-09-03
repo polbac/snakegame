@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { Route } from "react-router-dom";
-import HallOfFame from './containers/hall-of-fame';
+import AuthenticationProtection from './components/authentication-protection';
 import Snake from './containers/snake';
 
 
@@ -10,7 +8,9 @@ export default class App extends Component {
     
     render(){
         return (
-            <p>dasdsa</p>
+            <AuthenticationProtection>
+                <Snake />
+            </AuthenticationProtection>
         );
     }
 }
