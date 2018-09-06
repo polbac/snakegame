@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as style from './style.css'
+import { Image8Bit } from '../Image8bit';
 
 interface RankingItemProps {
     data: any;
@@ -15,7 +16,7 @@ export default class RankingItem extends React.Component <RankingItemProps> {
                     <span>{ranking}</span>
                 </div>
                 <div className={ style['avatar']}>
-                    <img src={avatar} alt=""/>
+                    <Image8Bit src={avatar} />
                 </div>
                 <div className={ style['name'] }>
                     <span>{name}</span>

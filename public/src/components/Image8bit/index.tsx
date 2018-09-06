@@ -1,5 +1,6 @@
 import * as React from 'react';
 const eightBit = require('8bit'); // only needed for NPM installs
+const uniqid = require('uniqid');
 
 type Image8BitProps = {
     src: string
@@ -14,8 +15,8 @@ export class Image8Bit extends React.Component<Image8BitProps, Image8BitState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            canvasId: 'canvasId',
-            imageId: 'imageId',
+            canvasId: `canvas-${uniqid()}`,
+            imageId: `image-${uniqid()}`,
         }
     }
     
@@ -29,6 +30,7 @@ export class Image8Bit extends React.Component<Image8BitProps, Image8BitState> {
     render(){
         const { canvasId, imageId } = this.state;
         const { src } = this.props;
+        
         return (
             <div>
                 <canvas id={ canvasId }></canvas>

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { saveSession } from '../../actions/authenticate';
-import { Image8Bit } from '../Image8bit';
+
+import { navigateToGame } from '../../actions/navigate';
 
 
 const browser: any = window;
@@ -23,6 +24,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         }
         
         browser.onLinkedInLoad = () => {
+            console.log('hola')
             this.getProfileData();
             browser.IN.Event.on(browser.IN, "auth", (session: any) => this.getProfileData);
         }
@@ -36,14 +38,15 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         
         this.setState({
             loading: false,
-        })
+        });
+
     }
 
     onLinkedinError(error: any) {
-        console.log('error', error) 
     }
 
     getProfileData() {
+        
         browser.IN.API.Raw("/people/~:(picture-url,firstName,headline,id)")
                .result(this.getProfileLinkedin)
                .error(this.onLinkedinError);
@@ -51,6 +54,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
 
     startGame = () => {
         const { dispatch } = this.props as any;
+        dispatch(navigateToGame());
     }
 
     render() {
@@ -64,7 +68,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
             return <script type="in/Login"></script>;
         }
 
-        const { pictureUrl, firstName } = session; 
+        /* const { pictureUrl, firstName } = session; 
 
         return (<div>
             <h1>Trocasnake!</h1>
@@ -76,7 +80,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
             
             <p><button>Comenzar a jugar</button></p>
             <p><button onClick={this.startGame}>Hall of Fame</button></p>
-        </div>)
-        // return this.props.children;
+        </div>) */
+        return this.props.children;
     }   
 }

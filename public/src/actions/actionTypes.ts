@@ -1,21 +1,4 @@
 
 export const SAVE_SESSION: string = 'SAVE_SESSION';
-
-export const GAME: any = {
-
-    START: 'START_GAME',
-    END: 'END_GAME',
-    RESTART: 'RESTART_GAME',
-
-    SNAKE_MOVE_TOP: 'SNAKE_MOVE_TOP',
-    SNAKE_MOVE_LEFT: 'SNAKE_MOVE_LEFT',
-    SNAKE_MOVE_BOTTOM: 'SNAKE_MOVE_BOTTOM',
-    SNAKE_MOVE_RIGHT: 'SNAKE_MOVE_RIGHT',
-
-    SNAKE_EAT: 'SNAKE_EAT',
-
-};
-
-export default {
-    SAVE_SESSION,
-};
+export const NAVIGATE_TO_GAME: string = 'NAVIGATE_TO_GAME'
+export const NAVIGATE_TO_HALL_OF_FAME: string = 'NAVIGATE_TO_HALL_OF_FAME'
