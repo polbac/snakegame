@@ -1,7 +1,12 @@
 import * as React from 'react';
+import styled from "styled-components";
 const eightBit = require('8bit'); // only needed for NPM installs
 const uniqid = require('uniqid');
 
+const Image = styled.img`
+    max-width: 100%;
+    margin: auto;
+`;
 type Image8BitProps = {
     src: string,
     squares: number
@@ -36,7 +41,7 @@ export class Image8Bit extends React.Component<Image8BitProps, Image8BitState> {
         return (
             <div>
                 <canvas id={ canvasId }></canvas>
-                <img onLoad={ this.createCanvas } id={imageId} src={src} /> 
+                <Image  onLoad={ this.createCanvas } id={imageId} src={src} />   
             </div>
         );
     }
