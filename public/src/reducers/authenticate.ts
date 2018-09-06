@@ -1,6 +1,3 @@
-import { SAVE_SESSION } from "actions/actionTypes";
-
-
 
 const INIT_STATE_AUTHENTICATE: any = {
     session: null,
