@@ -57,7 +57,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         const { session } = this.props as any;
 
         if (this.state.loading === true) {
-            return <div>Cargando</div>;
+            return <div>Cargando...</div>;
         }
         
         if (session === null) {
@@ -65,7 +65,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         }
 
         const { pictureUrl, firstName } = session; 
-        console.log(pictureUrl);
+
         return (<div>
             <h1>Trocasnake!</h1>
             <p>Bienvenido {firstName}!</p>

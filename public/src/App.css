@@ -1,3 +1,15 @@
 html,body {
   background: black;
+  color: orangered;
+  text-align: center;
+}
+
+* {
+  font-family: 'Press Start 2P';
+}
+
+button {
+  background-color: orangered;
+  padding: 10px;
+  border: 0;
 }

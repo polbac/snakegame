@@ -2,6 +2,7 @@ import * as React from 'react';
 import Snake from './containers/snake';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { HallOfFame } from './containers/hall-of-fame';
+import './App.css';
 
 export default class App extends React.Component<{}> {
     

@@ -22,7 +22,7 @@ export class Image8Bit extends React.Component<Image8BitProps, Image8BitState> {
     createCanvas = () => {
         const { canvasId, imageId } = this.state;
         const image: any = document.getElementById(imageId);
-        eightBit(document.getElementById(canvasId), image, 40);
+        eightBit(document.getElementById(canvasId), image, 20);
         image.style.display = 'none';
     }
 
