@@ -6,7 +6,7 @@ const INIT_STATE_GAME: any = {
     view: View.AUTHENTICATE,
 };
 
-export const game = (state = INIT_STATE_GAME, action: any) => {
+export const game = (state = INIT_STATE_GAME, action: any): any => {
     switch (action.type) {
       default:
         return state

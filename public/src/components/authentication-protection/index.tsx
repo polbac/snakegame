@@ -1,17 +1,26 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { saveSession } from '../../actions/authenticate';
+import { Image8Bit } from '../Image8bit';
+
 
 const browser: any = window;
 
 const mapStateToProps = (store: any) => store.authenticate;
 
-@connect(mapStateToProps)
-export class AuthenticationProtection extends React.Component {
+type AuthenticationProtectionState = {
+    loading: boolean,
+}
 
+@connect(mapStateToProps)
+export class AuthenticationProtection extends React.Component<{}, AuthenticationProtectionState> {
+    
     constructor(props: any) {
         super(props);
 
+        this.state = {
+            loading: true,
+        }
         
         browser.onLinkedInLoad = () => {
             this.getProfileData();
@@ -24,6 +33,10 @@ export class AuthenticationProtection extends React.Component {
         dispatch(
             saveSession(session)
         );
+        
+        this.setState({
+            loading: false,
+        })
     }
 
     onLinkedinError(error: any) {
@@ -36,19 +49,34 @@ export class AuthenticationProtection extends React.Component {
                .error(this.onLinkedinError);
     }
 
+    startGame = () => {
+        const { dispatch } = this.props as any;
+    }
+
     render() {
         const { session } = this.props as any;
+
+        if (this.state.loading === true) {
+            return <div>Cargando</div>;
+        }
+        
         if (session === null) {
             return <script type="in/Login"></script>;
         }
+
         const { pictureUrl, firstName } = session; 
+        console.log(pictureUrl);
         return (<div>
             <h1>Trocasnake!</h1>
             <p>Bienvenido {firstName}!</p>
-            <p><img src={pictureUrl} /></p>
-            <button>Comenzar a jugar</button>
+            <p>
+                <Image8Bit src={pictureUrl} />
+            </p>
+
+            
+            <p><button>Comenzar a jugar</button></p>
+            <p><button onClick={this.startGame}>Hall of Fame</button></p>
         </div>)
         // return this.props.children;
     }   
 }
-
