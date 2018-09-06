@@ -9,8 +9,7 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
+  socket.on('HeroMove', function (data) {
     console.log(data);
   });
 });
