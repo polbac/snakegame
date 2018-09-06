@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as style from './style.css'
 import { Image8Bit } from '../Image8bit';
+import * as Style from './style'
 
 interface RankingItemProps {
     data: any;
@@ -11,20 +11,20 @@ export default class RankingItem extends React.Component <RankingItemProps> {
         const { name, avatar, score, ranking } = this.props.data;
 
         return (
-            <div className={ style['Ranking-item'] }>
-                <div className={ style['ranking'] }>
+            <Style.ListItem>
+                <Style.RankingPosition>
                     <span>{ranking}</span>
-                </div>
-                <div className={ style['avatar']}>
+                </Style.RankingPosition>
+                <Style.Avatar>
                     <Image8Bit src={avatar} squares={40} />
-                </div>
-                <div className={ style['name'] }>
+                </Style.Avatar>
+                <Style.Name>
                     <span>{name}</span>
-                </div>
-                <div className={ style['score'] }>
+                </Style.Name>
+                <Style.Score>
                     <span>{score}</span>
-                </div>
-            </div>
+                </Style.Score>
+            </Style.ListItem>
         );
     }
 }
