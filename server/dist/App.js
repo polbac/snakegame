@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+let a = 1;
 class App {
     constructor() {
         this.express = express();
@@ -9,6 +10,8 @@ class App {
     mountRoutes() {
         const router = express.Router();
         router.get('/', (req, res) => {
+            console.log(a);
+            a += 1;
             res.json({
                 message: 'Hello World!'
             });

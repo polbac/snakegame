@@ -11,6 +11,7 @@ export default class Snake extends React.Component<{}> {
     
     render() {
         const { game } = this.props as any;
+        console.log(game);
         return (
             <AuthenticationProtection>
                 { game.view === View.MAIN_MENU && <MainMenu />}

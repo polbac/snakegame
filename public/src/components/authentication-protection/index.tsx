@@ -20,7 +20,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         super(props);
 
         this.state = {
-            loading: true,
+            loading: false,
         }
         
         browser.onLinkedInLoad = () => {

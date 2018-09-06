@@ -16,7 +16,7 @@ export default class RankingItem extends React.Component <RankingItemProps> {
                     <span>{ranking}</span>
                 </div>
                 <div className={ style['avatar']}>
-                    <Image8Bit src={avatar} />
+                    <Image8Bit src={avatar} squares={40} />
                 </div>
                 <div className={ style['name'] }>
                     <span>{name}</span>

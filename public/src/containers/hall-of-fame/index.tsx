@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as QRCode from 'qrcode.react';
 import config from '../../config';
 import RankingItem from '../../components/ranking-item';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state: any) => state.hallOfFame;
   
@@ -16,6 +17,7 @@ export class HallOfFame extends React.Component<{}> {
             <section className="content">
                 <QRCode value={config.appUrl} />
                 {ranking.map( (item: any) => <RankingItem data={item} />)}
+                <Link to='/'><button>Back to menu</button></Link>
             </section>
         );
     }   

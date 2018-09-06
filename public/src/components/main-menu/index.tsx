@@ -19,11 +19,11 @@ export class MainMenu extends React.Component<{}> {
                 <h1>Trocasnake!</h1>
                 <p>Bienvenido {firstName}!</p>
                 <p>
-                    <Image8Bit src={pictureUrl} />
+                    <Image8Bit src={pictureUrl} squares={20} />
                 </p>
 
                 
-                <p><button onClick={ dispatch(navigateToGame()) }>Comenzar a jugar</button></p>
+                <p><button onClick={ () => dispatch(navigateToGame()) }>Comenzar a jugar</button></p>
                 <Link to='/hall-of-fame'><button>Hall of Fame</button></Link>
             </section>
         )
