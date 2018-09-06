@@ -4,6 +4,9 @@ import { AuthenticationProtection } from '../../components/authentication-protec
 import { View } from '../../types/view';
 import { MainMenu } from '../../components/main-menu';
 import { UserInput } from '../../components/user-input';
+import { GameEngine } from '../../components/game-engine';
+import { GameFrame } from '../../components/game-frame';
+import { GameOver } from '../../components/game-over';
 
 const mapStateToProps = (store: any) => store;
 
@@ -15,12 +18,19 @@ export default class Snake extends React.Component<{}> {
 
         return (
             <AuthenticationProtection>
+
                 { game.view === View.MAIN_MENU && <MainMenu />}
+                
                 { game.view === View.GAME && (
                     <UserInput>
-                        holis
+                        <GameEngine>
+                            <GameFrame />
+                        </GameEngine>
                     </UserInput>
                 )}
+                
+                { game.view === View.GAME_OVER && <GameOver />}
+
             </AuthenticationProtection>
         );
     }   
