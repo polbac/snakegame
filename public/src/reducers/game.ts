@@ -1,4 +1,7 @@
-import { NAVIGATE_TO_GAME, NAVIGATE_TO_MAIN_MENU } from './../actions/actionTypes';
+import { 
+    NAVIGATE_TO_GAME, 
+    HERO_MOVE
+} from './../actions/actionTypes';
 
 import { View } from '../types/view';
 
@@ -17,20 +20,20 @@ export const game = (state = INIT_STATE_GAME, action: any): any => {
             }
         }
 
-        case NAVIGATE_TO_MAIN_MENU : {
-            return {
-                userInput: null,
-                view: View.MAIN_MENU,
-            }
-        }
-
         case View.GAME_OVER : {
             return {
                 userInput: null,
                 view: View.GAME_OVER,
             }
         }
-    
+
+        case HERO_MOVE : {
+            return {
+                ...state,
+                userInput: action.userInput
+            }
+        }
+
         default : {
             return state
         }

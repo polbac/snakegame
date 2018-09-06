@@ -24,7 +24,6 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         }
         
         browser.onLinkedInLoad = () => {
-            console.log('hola')
             this.getProfileData();
             browser.IN.Event.on(browser.IN, "auth", (session: any) => this.getProfileData);
         }
