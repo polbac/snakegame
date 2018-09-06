@@ -32,7 +32,7 @@ const INIT_STATE_HALL_OF_FAME: any = {
     ],
 };
 
-export const hallOfFame = (state = INIT_STATE_HALL_OF_FAME, action: any) => {
+export const hallOfFame = (state = INIT_STATE_HALL_OF_FAME, action: any): any => {
     switch (action.type) {
       default:
         return state
