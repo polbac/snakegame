@@ -1,0 +1,35 @@
+.Ranking-item{
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #eee;
+    padding: 15px; 
+} 
+    
+.ranking{
+  display: inline-block;
+  width: 15%;
+  vertical-align: middle;
+}
+
+.avatar{
+    display: inline-block;
+    width: 10%;
+    vertical-align: middle;
+    max-width: 50px;
+    background: red;
+}
+.avatar img{
+    max-width: 100%;
+    margin: auto;
+}
+.name{
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+}
+.score{
+    display: inline-block;
+    width: 25%;
+    vertical-align: middle;
+    text-align: right
+}
