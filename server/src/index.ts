@@ -1,11 +1,16 @@
-import app from './App'
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-const port = process.env.PORT || 3000
+server.listen(4000);
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.log(err)
-  }
+app.get('/', function (req, res) {
+  res.send('hello world');
+});
 
-  return console.log(`server is listening on ${port}`)
-})
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});

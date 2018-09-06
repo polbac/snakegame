@@ -1,11 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const App_1 = require("./App");
-const port = process.env.PORT || 3000;
-App_1.default.listen(port, (err) => {
-    if (err) {
-        return console.log(err);
-    }
-    return console.log(`server is listening on ${port}`);
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+server.listen(4000);
+app.get('/', function (req, res) {
+    res.send('hello world');
+});
+io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
 });
 //# sourceMappingURL=index.js.map
