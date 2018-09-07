@@ -22,6 +22,12 @@ export const Content: any = styled.div`
         height:100vh;
         background-image: linear-gradient(to top, #ebf9f9, #ebf9f9);
     `}
+
+     ${(p: any) => p.game && css`
+        padding: 10px 20px;
+        height:100vh;
+        background-image: linear-gradient(to top, #ebf9f9, #ebf9f9);
+    `}
 `;
 
 export const CenterVertical = styled.div`
