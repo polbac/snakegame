@@ -45,7 +45,7 @@ export class GameState {
     }
 
     snake_has_eaten_fruit() : boolean {
-        return this.snake.head == this.fruit;
+        return this.snake.head.equals(this.fruit);
     }
 
     tick = () : GameState => {
