@@ -35,6 +35,16 @@ app.post('/authenticate', (req, res) => __awaiter(this, void 0, void 0, function
         res.send({ status: false, error });
     }
 }));
+app.get('/hall-of-fame', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    try {
+        const hallOfFame = yield repository.getHallOfFame();
+        console.log(hallOfFame);
+        res.send({ status: true, hallOfFame });
+    }
+    catch (error) {
+        res.send({ status: false, error });
+    }
+}));
 io.on('connection', function (socket) {
     socket.on('HeroMove', function (data) {
     });

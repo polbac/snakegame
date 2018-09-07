@@ -2,7 +2,7 @@ import { GameEvent } from '../../types/game-event';
 import * as ioClient from 'socket.io-client'
 import config from '../../config';
 
-let io = ioClient(config.serverURL);
+let io = ioClient(config.serverUrl);
 
 
 export const syncGameMiddleware = (store: any) => (next: any) => (action: any) => {

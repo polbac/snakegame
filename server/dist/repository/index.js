@@ -5,23 +5,35 @@ class Repository {
     constructor() {
         this.FILE_NAME = 'db.sqlite';
         this.createUser = (user) => {
-            const { id, name, avatar, username, headline } = user;
             return new Promise((resolve, reject) => {
+                const { id, name, avatar, username, headline } = user;
                 this.db.run(`
-                INSERT INTO 
+                INSERT OR REPLACE INTO 
                     users (id, name, avatar, username, headline) 
-                VALUES
-                        (${id}, '${name}', '${avatar}', '${username}', '${headline}')
-                WHERE NOT EXISTS 
-                        (SELECT id FROM users WHERE id=${id});
+                VALUES ('${id}', '${name}', '${avatar}', '${username}', '${headline}')
             `, (res, err) => {
                     if (res !== undefined) {
                         console.log(res);
-                        console.log(`user ${user} created ok!`);
+                        console.log(`user ${user} updated/created ok!`);
                         resolve();
                     }
                     if (err !== undefined) {
                         console.log(`can't create user ${err}`);
+                        reject();
+                    }
+                });
+            });
+        };
+        this.getHallOfFame = () => {
+            return new Promise((resolve, reject) => {
+                this.db.all(`SELECT * FROM users;`, (err, rows) => {
+                    console.log('rows', rows);
+                    console.log('err', err);
+                    if (rows !== undefined) {
+                        resolve(rows);
+                    }
+                    if (err !== undefined) {
+                        console.log(`can't list ranking`);
                         reject();
                     }
                 });
