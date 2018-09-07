@@ -49,7 +49,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
 
     getProfileData() {
         
-        browser.IN.API.Raw("/people/~:(picture-url,firstName,headline,id)")
+        browser.IN.API.Raw("/people/~:(picture-url,firstName,lastName,headline,id)")
                .result(this.getProfileLinkedin)
                .error(this.onLinkedinError);
     }
