@@ -59,6 +59,7 @@
     "@types/react-swipeable": "^4.2.2",
     "@types/redux-logger": "^3.0.6",
     "@types/socket.io-client": "^1.4.32",
+    "@types/styled-components": "^3.0.0",
     "babel-plugin-styled-components": "^1.6.3",
     "classnames": "^2.2.6",
     "lodash": "^4.17.10",
