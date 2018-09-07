@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { startGame, tick } from '../../actions/game';
+import { startGame, tick, endGame } from '../../actions/game';
 
 type GameEngineProps = {
 
@@ -11,7 +11,7 @@ type GameEngineState = {
     imageId: string;
 }
 
-@connect(store => store.game)
+@connect(store => store)
 export class GameEngine extends React.Component<GameEngineProps, GameEngineState> {
 
     interval: any;
@@ -29,10 +29,20 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
     }
 
     tick() {
-        const { dispatch } = this.props as any;
-        dispatch(
-            tick()
-        );
+
+        const { dispatch, game } = this.props as any;
+
+        if (game.ended()) { 
+            clearInterval(this.interval);
+            dispatch(
+                endGame()
+            );
+        } else {
+            dispatch(
+                tick()
+            );
+        }
+
     }
 
     render(){

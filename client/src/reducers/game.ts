@@ -8,11 +8,13 @@ class GameState {
     fruit: Vec;
     size: Vec;
     view: View;
+    score: number;
 
     constructor() {
         this.snake = new Snake();
         this.fruit = new Vec(10, 15);
         this.size = new Vec(20, 30);
+        this.score = 0;
         this.view = View.MAIN_MENU;
     }
 
@@ -21,16 +23,32 @@ class GameState {
         c.snake = this.snake.clone();
         c.fruit = this.fruit.clone();
         c.size = this.size.clone();
+        c.score = this.score;
         c.view = this.view;
         return c
     }
 
-    snake_has_eaten_fruit() {
+    ended() : boolean {
+        return this.snake.has_eaten_up_itself()
+    }
+
+    snake_has_eaten_fruit() : boolean {
         return this.snake.head == this.fruit;
     }
 
-    tick() {
-        
+    tick() : GameState {
+        if (this.snake.has_eaten_up_itself()) {
+            return this
+        }
+
+        this.snake.move(this.size);
+
+        if (this.snake_has_eaten_fruit()) {
+            this.snake.grow();
+            this.score += 1;
+        }
+
+        return this
     }
 }
 
@@ -57,10 +75,14 @@ class Snake {
         return s
     }
 
-    move() {
+    move(mapSize: Vec) {
         let body = _.dropRight(this.body, 1)
         this.body = [this.head, ...body];
-        this.head = this.head.add(this.direction);
+
+        let head = this.head.clone().add(this.direction);
+        head.x = head.x % mapSize.x;
+        head.y = head.y % mapSize.y;
+        this.head = head;
     }
 
     grow() {
@@ -70,7 +92,7 @@ class Snake {
         }
     }
 
-    has_eaten_up_itself() {
+    has_eaten_up_itself() : boolean {
         return _.some(this.body, (b) => b.equals(this.head) );
     }
 }
@@ -110,7 +132,7 @@ export const game = (state = new GameState(), action: any): any => {
         }
 
         case GameEvent.TICK : {
-            
+            return state.clone().tick();
         }
 
         default : {
