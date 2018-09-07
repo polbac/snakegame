@@ -10,11 +10,13 @@ class GameState {
     snake: Snake;
     fruit: Vec;
     size: Vec;
+    view: View;
 
     constructor() {
         this.snake = new Snake();
         this.fruit = new Vec(10, 15);
         this.size = new Vec(20, 30);
+        this.view = View.MAIN_MENU;
     }
 }
 
