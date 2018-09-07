@@ -3,7 +3,7 @@ import { View } from '../types/view';
 import { Vec } from '../types/vector';
 import * as _ from 'lodash';
 
-class GameState {
+export class GameState {
     snake: Snake;
     fruit: Vec;
     size: Vec;
@@ -28,7 +28,7 @@ class GameState {
         return c
     }
 
-    ended() : boolean {
+    public ended() : boolean {
         return this.snake.has_eaten_up_itself()
     }
 
@@ -36,7 +36,7 @@ class GameState {
         return this.snake.head == this.fruit;
     }
 
-    tick() : GameState {
+    tick = () : GameState => {
         if (this.snake.has_eaten_up_itself()) {
             return this
         }
@@ -50,9 +50,10 @@ class GameState {
 
         return this
     }
+
 }
 
-class Snake {
+export class Snake {
     direction: Vec;
     head: Vec;
     body: Vec[];
@@ -101,34 +102,29 @@ export const game = (state = new GameState(), action: any): any => {
     switch (action.type) {
 
         case GameEvent.SHOW_MAIN_MENU : {
-            return {
-                ...state,
-                view: View.MAIN_MENU,
-            }
+            let s = state.clone();
+            s.view = View.MAIN_MENU;
+            return s
         }
 
         case GameEvent.START : {
-            return {
-                ...state,
-                view: View.GAME,
-                startAt: new Date(),
-            }
+            let s = state.clone();
+            s.view = View.GAME;
+            // startAt: new Date(),
+            return s
         }
 
         case GameEvent.END : {
-            return {
-                ...state,
-                view: GameEvent.END,
-                endAt: new Date(),
-            }
+            let s = state.clone();
+            s.view = View.GAME_OVER;
+            // endAt: new Date(),
+            return s
         }
 
         case GameEvent.HERO_MOVE : {
-
-            return {
-                ...state,
-                userInput: action.userInput
-            }
+            let s = state.clone();
+            // CHANGE DIRECTION
+            return s
         }
 
         case GameEvent.TICK : {
