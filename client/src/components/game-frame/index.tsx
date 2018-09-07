@@ -44,7 +44,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
 
         snake.body.forEach((part: any, index: any) => {
             if (this.bodyParts[index] == undefined) {
-                const bodyPart = PIXI.Sprite.fromImage('assets/images/snake_body.png');
+                const bodyPart = PIXI.Sprite.fromImage('assets/images/body.png');
                 bodyPart.x = this.mapRealSize(part).x;
                 bodyPart.y = this.mapRealSize(part).y;
                 this.pixiApp.stage.addChild(bodyPart);
@@ -91,12 +91,12 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         });
         this.pixiApp.renderer.backgroundColor = 0x061639;
         
-        this.player = PIXI.Sprite.fromImage('assets/images/snake_head.png');
+        this.player = PIXI.Sprite.fromImage('assets/images/head.png');
         this.player.x = 50;
         this.player.y = this.pixiApp.renderer.height / 2;
         this.pixiApp.stage.addChild(this.player);
 
-        this.fruit = PIXI.Sprite.fromImage('assets/images/food.png');
+        this.fruit = PIXI.Sprite.fromImage('assets/images/fruit.png');
         this.fruit.x = 50;
         this.fruit.y = this.pixiApp.renderer.height / 2;
         this.pixiApp.stage.addChild(this.fruit);
