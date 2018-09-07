@@ -48,17 +48,20 @@ app.get('/hall-of-fame', async (req, res) => {
 
 
 io.on('connection', function (socket) {
-    socket.on('sync', function (data) {
+    socket.on('sync', async function (data) {
         socket.broadcast.emit('syncLive', data);
 
         let { event, game, authenticate } = data;
 
 
-        repository.getUser(authenticate.session.id);
+        if (authenticate && authenticate.session) {
+            let user = await repository.getUser(authenticate.session.id);
 
-        //repository.getUser(
+            if (user.score == null || game.score > user.score) {
 
-
+            }
+        }
+        
     });
 });
 
