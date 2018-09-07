@@ -1,3 +1,4 @@
+import { SAVE_RANKING } from "../actions/actionTypes";
 
 const INIT_STATE_HALL_OF_FAME: any = {
     ranking: [
@@ -34,7 +35,14 @@ const INIT_STATE_HALL_OF_FAME: any = {
 
 export const hallOfFame = (state = INIT_STATE_HALL_OF_FAME, action: any): any => {
     switch (action.type) {
-      default:
-        return state
+        case SAVE_RANKING : {
+            console.log('hola');
+            return {
+                ranking: action.hallOfFame
+            }   
+        }
+        
+        default:
+            return state
     }
 }

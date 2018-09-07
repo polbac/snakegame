@@ -4,12 +4,17 @@ import * as QRCode from 'qrcode.react';
 import config from '../../config';
 import RankingItem from '../../components/ranking-item';
 import { Link } from 'react-router-dom';
+import { fetchRanking } from '../../actions/hall-of-fame';
 
 const mapStateToProps = (state: any) => state.hallOfFame;
-  
 
 @connect(mapStateToProps)
 export class HallOfFame extends React.Component<{}> {
+    componentDidMount() {
+        const { dispatch } = this.props as any;
+        dispatch(fetchRanking());
+
+    }
     render(){
         const { ranking } = this.props as any;
         return (
