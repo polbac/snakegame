@@ -14,7 +14,7 @@ export const startGame = () => {
     }
 }
 
-export const startEnd = () => {
+export const endGame = () => {
     return {
         type: GameEvent.END,
     }
@@ -23,6 +23,12 @@ export const startEnd = () => {
 export const eatFruit = () => {
     return {
         type: GameEvent.FRUIT_EATEN,
+    }
+}
+
+export const tick = () => {
+    return {
+        type: GameEvent.TICK,
     }
 }
 

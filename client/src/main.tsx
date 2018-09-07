@@ -5,15 +5,22 @@ import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import ReduxThunk from 'redux-thunk'
 import { syncGameMiddleware } from './middlewares';
+import config from './config';
 
 import rootStore from './reducers';
 import App from './App';
 
-const rootMiddlewares = [
+let rootMiddlewares = [
   ReduxThunk,
-  logger,
   syncGameMiddleware,
 ];
+
+if (config.logger) {
+  rootMiddlewares = [
+    ...rootMiddlewares,
+    logger
+  ];
+}
 
 const store = createStore(
   rootStore,
