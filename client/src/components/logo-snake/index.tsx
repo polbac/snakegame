@@ -15,7 +15,7 @@ export default class LogoSnake extends React.Component {
     render(){
         return (
             <TrocaSnake>
-                <Image src="https://via.placeholder.com/180x50" alt="" />
+                <Image src="https://via.placeholder.com/180x50" alt="TrocaSnake" />
             </TrocaSnake>
         );
     }

@@ -1,31 +1,34 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Image8Bit } from '../Image8bit';
 import { navigateToGame } from '../../actions/navigate';
 
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Content } from '../layout'; 
+import LogoSnake from '../logo-snake';
+import { Button, HiperLink } from '../button';
 
 const mapStateToProps = (store: any) => store.authenticate;
 
+const ButtonsContainer = styled.div`
+    width: 100%;
+    margin-top:100px;
+`;
 @connect(mapStateToProps)
 export class MainMenu extends React.Component<{}> {
 
     render() {
-        const { session, dispatch } = this.props as any;
-        const { pictureUrl, firstName } = session; 
-
+        const { dispatch } = this.props as any;
+       
         return (
-            <section>
-                <h1>Trocasnake!</h1>
-                <p>Bienvenido {firstName}!</p>
-                <p>
-                    <Image8Bit src={pictureUrl} squares={20} />
-                </p>
-
-                
-                <p><button onClick={ () => dispatch(navigateToGame()) }>Comenzar a jugar</button></p>
-                <Link to='/hall-of-fame'><button>Hall of Fame</button></Link>
-            </section>
+            <Content home>
+                <LogoSnake></LogoSnake> 
+                <ButtonsContainer>
+                    <Button onClick={ () => dispatch(navigateToGame()) }>Comenzar a jugar</Button>
+                    <HiperLink likeButton href="/hall-of-fame">Hall of Fame</HiperLink>
+                    <HiperLink likeButton href="https://google.com">About</HiperLink>
+                    <HiperLink href="https://google.com">Log out</HiperLink>
+                </ButtonsContainer>
+            </Content>
         )
     }   
 }

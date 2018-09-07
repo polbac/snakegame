@@ -68,7 +68,7 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         
         if (session === null) {
             return (
-                <Content home>
+                <Content login>
                     <LogoSnake></LogoSnake>
                     <Paragraph>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</Paragraph>
                     <LinkedinButton><script type="in/Login"></script></LinkedinButton>    
