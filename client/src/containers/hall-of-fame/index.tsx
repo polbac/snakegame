@@ -102,7 +102,7 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
             })
         }, this.INTERVAL_TIME); */
 
-        io.on('sync-live', x => console.log(x) );
+        io.on('syncLive', (x: any) => console.log(x) );
     }
 
     componentWillMount() {
@@ -143,6 +143,7 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     </RankingView>
                 )}
 
+                
                 
                 
 
