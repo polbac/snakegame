@@ -71,8 +71,10 @@ type HallOfFameState = {
 export class HallOfFame extends React.Component<{}, HallOfFameState> {
     
     private interval: any;
+    private intervalFetchRanking: any;
 
     readonly INTERVAL_TIME: number = 5000;
+    readonly INTERVAL_FETCH_RANKING: number = 500;
 
     constructor(props: any) {
         super(props);
@@ -85,6 +87,10 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
         const { dispatch } = this.props as any;
         dispatch(fetchRanking());
 
+        this.intervalFetchRanking = setInterval(() => {
+            dispatch(fetchRanking());
+        }, this.INTERVAL_FETCH_RANKING);
+
         /* this.interval = setInterval(() => {
             this.setState({
                 screen: !this.state.screen,
@@ -94,6 +100,7 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
 
     componentWillMount() {
         clearInterval(this.interval);
+        clearInterval(this.intervalFetchRanking);
     }
 
     render(){
@@ -129,8 +136,8 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     </RankingView>
                 )}
 
-                <GameEngineLive key='game'>
-                    <GameFrame />
+                <GameEngineLive >
+                    <GameFrame key='live' />
                 </GameEngineLive>
                 
             </Wrapper>

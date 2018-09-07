@@ -71,6 +71,8 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     render() {
         let user: any = {};
 
+        const { snake } = (this.props as any)[this.props.target];
+
         if (this.props.target === 'game') {
             user = this.props.authenticate.session;
         }
@@ -85,7 +87,7 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
                     <span className={style.scoreText}>SCORE</span>
                     <div className={style.score}>
                         <span className={style.scoreImage}></span>
-                        <span className={style.scoreValue}>1234567</span>
+                        <span className={style.scoreValue}>{snake.body.length}</span>
                     </div>
                 </div>
                
@@ -100,7 +102,7 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
                         </div>
     
                         <div className='ranking'>
-                            Ranking: 10
+                            Ranking: {snake.body.length}
                         </div>
                     </div>
                 </div>
