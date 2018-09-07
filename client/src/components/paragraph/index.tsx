@@ -4,7 +4,7 @@ import { fontColor } from '../../utils/colors';
 
 
 export const P = styled.p`
-    font-size:13px;
+    font-size:15px;
     color: ${fontColor};
     margin-bottom:20px;
 `;

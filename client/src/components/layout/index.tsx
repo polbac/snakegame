@@ -10,8 +10,10 @@ export const Content: any = styled.div`
     padding:30px;
 
     ${(p: any) => p.login && css`
-        padding: 40px 30px;
+        padding: 0 30px;
         text-align:center;
+        height:100vh;
+        background-image: linear-gradient(to top, #ebf9f9, #ebf9f9);
     `}
 
     ${(p: any) => p.home && css`
