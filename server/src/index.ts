@@ -39,7 +39,6 @@ app.post('/authenticate', async (req, res) => {
 app.get('/hall-of-fame', async (req, res) => {
   try {
     const hallOfFame = await repository.getHallOfFame();
-    console.log(hallOfFame);
     res.send({ status: true, hallOfFame });
   } catch (error) {
     res.send({ status: false, error});
@@ -50,12 +49,16 @@ app.get('/hall-of-fame', async (req, res) => {
 
 io.on('connection', function (socket) {
     socket.on('sync', function (data) {
+        socket.broadcast.emit('syncLive', data);
+
         let { event, game, authenticate } = data;
 
-        console.log(game);
+
+        repository.getUser(authenticate.session.id);
+
+        //repository.getUser(
 
 
-        socket.broadcast.emit('sync', data);
     });
 });
 

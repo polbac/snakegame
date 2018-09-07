@@ -101,4 +101,30 @@ export default class Repository {
         });
     }
     
+    public getUser = (userId: string): Promise<any> => {
+        return new Promise((resolve, reject) => {
+            this.db.get(`
+                SELECT 
+                    id, name, avatar, username, headline, score
+                FROM users where id = '${userId}';
+            `, (err: any, row: any) => {
+                if (row !== undefined) {
+                    console.log(row);
+                    resolve({
+                        // id: row;
+                        // name: string;
+                        // score: number;
+                        // avatar: string;
+                        // headline: string;
+                        // username: string;
+                    });
+                }
+
+                if (err !== undefined) {
+                    console.log(`can't get user ${err}`);
+                    reject();
+                }
+            });
+        });
+    }
 }
