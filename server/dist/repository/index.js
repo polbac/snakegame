@@ -39,6 +39,24 @@ class Repository {
                 });
             });
         };
+        this.getUser = (userId) => {
+            return new Promise((resolve, reject) => {
+                this.db.get(`
+                SELECT 
+                    id, name, avatar, username, headline, score
+                FROM users where id = '${userId}';
+            `, (err, row) => {
+                    if (row !== undefined) {
+                        console.log(row);
+                        resolve({});
+                    }
+                    if (err !== undefined) {
+                        console.log(`can't get user ${err}`);
+                        reject();
+                    }
+                });
+            });
+        };
         this.db = new sqlite3.Database(this.FILE_NAME, sqlite3.OPEN_READWRITE, (err) => {
             if (err !== null) {
                 return console.log(err);
