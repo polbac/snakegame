@@ -3,6 +3,7 @@ import * as PIXI from 'pixi.js';
 import { connect } from 'react-redux';
 import { Image8Bit } from '../Image8bit';
 const uniqid = require('uniqid');
+import * as style from './style.css';
 
 type GameFrameState = {
     canvasId: string;
@@ -40,13 +41,15 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         return (
             <div>
                 <canvas id={ this.state.canvasId }></canvas>
-                <div className='profile'>
-                    <Image8Bit src={authenticate.session.pictureUrl} squares={45}/>
-                    {authenticate.session.firstName} {authenticate.session.lastName}
-                </div>
+                <div className={style.gameStatus}>
+                    <div className='profile'>
+                        <Image8Bit src={authenticate.session.pictureUrl} squares={45}/>
+                        {authenticate.session.firstName} {authenticate.session.lastName}
+                    </div>
 
-                <div className='ranking'>
-                    Ranking: 10
+                    <div className='ranking'>
+                        Ranking: 10
+                    </div>
                 </div>
             </div>
         );
