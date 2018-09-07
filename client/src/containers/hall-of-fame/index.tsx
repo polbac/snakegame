@@ -11,6 +11,7 @@ import { Wrapper } from '../../components/layout';
 import { TrocaSnakeHorizontal } from '../../components/logo-snake-horizontal';
 import GameEngineLive from '../../components/game-engine-live';
 import { GameFrame } from '../../components/game-frame';
+import { saveLive } from '../../actions/live';
 
 
 let io = ioClient(config.serverUrl);
@@ -92,9 +93,9 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
         const { dispatch } = this.props as any;
         dispatch(fetchRanking());
 
-        this.intervalFetchRanking = setInterval(() => {
+        /* this.intervalFetchRanking = setInterval(() => {
             dispatch(fetchRanking());
-        }, this.INTERVAL_FETCH_RANKING);
+        }, this.INTERVAL_FETCH_RANKING); */
 
         /* this.interval = setInterval(() => {
             this.setState({
@@ -102,7 +103,9 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
             })
         }, this.INTERVAL_TIME); */
 
-        io.on('syncLive', (x: any) => console.log(x) );
+        io.on('syncLive', (res: any) => {
+            dispatch(saveLive(res))
+        });
     }
 
     componentWillMount() {
@@ -143,10 +146,9 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     </RankingView>
                 )}
 
-                
-                
-                
-
+                    <GameEngineLive>
+                        <GameFrame target='live'/>
+                    </GameEngineLive>
             </Wrapper>
         );
     }   
