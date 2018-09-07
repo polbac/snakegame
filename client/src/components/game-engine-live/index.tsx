@@ -2,8 +2,9 @@ import { GameEngine } from "../game-engine";
 import { connect } from "react-redux";
 
 const mapStateToPropsGameEngineLive = (store: any) => {
+    
     return {
-        game: store.game,
+        game: store.live.hasOwnProperty('live') ? store.live.live.game : {},
         user: {
             pictureUrl: 'https://via.placeholder.com/350x150',
             firstName: 'ppp',

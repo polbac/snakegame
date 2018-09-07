@@ -72,7 +72,7 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     render() {
         let user: any = {};
 
-        const { snake } = (this.props as any)[this.props.target];
+        let { snake } = (this.props as any)[this.props.target];
 
         if (this.props.target === 'game') {
 
@@ -80,11 +80,16 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
         }
 
         if (this.props.target === 'live') {
-            console.log('si');
-            if (this.props.live.hasOwnProperty('game') === false){
+
+            if (this.props.live.hasOwnProperty('live') === false){
                 return <p></p>
             }
-            user = this.props.live.session;
+            if ( this.props.live.live.authenticate.session === null) {
+                return <p></p>
+            }
+            user = this.props.live.live.authenticate.session;
+            snake = this.props.live.live.game.snake;
+            
         }
 
 

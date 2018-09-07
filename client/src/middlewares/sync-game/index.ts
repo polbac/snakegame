@@ -13,7 +13,6 @@ export const syncGameMiddleware = (store: any) => (next: any) => (action: any) =
     if (!socketEvent) {
         return next(action);    
     }
-
     const { game,  authenticate } = store.getState();
 
     io.emit('sync', {

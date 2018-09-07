@@ -93,18 +93,18 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
         const { dispatch } = this.props as any;
         dispatch(fetchRanking());
 
-        /* this.intervalFetchRanking = setInterval(() => {
+        this.intervalFetchRanking = setInterval(() => {
             dispatch(fetchRanking());
-        }, this.INTERVAL_FETCH_RANKING); */
+        }, this.INTERVAL_FETCH_RANKING);
 
-        /* this.interval = setInterval(() => {
+        this.interval = setInterval(() => {
             this.setState({
                 screen: !this.state.screen,
             })
-        }, this.INTERVAL_TIME); */
+        }, this.INTERVAL_TIME);
 
         io.on('syncLive', (res: any) => {
-            dispatch(saveLive(res))
+            console.log(res)
         });
     }
 
@@ -146,9 +146,6 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     </RankingView>
                 )}
 
-                    <GameEngineLive>
-                        <GameFrame target='live'/>
-                    </GameEngineLive>
             </Wrapper>
         );
     }   
