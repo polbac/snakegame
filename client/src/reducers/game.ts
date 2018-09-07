@@ -106,8 +106,8 @@ export class Snake {
         this.body = [this.head, ...body];
 
         let head = this.head.clone().add(this.direction);
-        head.x = head.x % mapSize.x;
-        head.y = head.y % mapSize.y;
+        head.x = (head.x + mapSize.x) % mapSize.x;
+        head.y = (head.y + mapSize.y) % mapSize.y;
         this.head = head;
     }
 
