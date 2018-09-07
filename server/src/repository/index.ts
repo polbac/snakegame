@@ -40,7 +40,7 @@ export default class Repository {
         return new Promise((resolve, reject) => {
             
             const { id, name, avatar, username, headline } = user;
-            
+
             this.db.run(`
                 INSERT OR REPLACE INTO 
                     users (id, name, avatar, username, headline) 
@@ -48,12 +48,33 @@ export default class Repository {
             `, (res: any, err: any) => {
                 if (res !== undefined) {
                     console.log(res);
-                    console.log(`user ${user} created ok!`);
+                    console.log(`user ${user} updated/created ok!`);
                     resolve();
                 }
 
                 if (err !== undefined) {
                     console.log(`can't create user ${err}`);
+                    reject();
+                }
+            });
+        });
+    }
+
+    public getHallOfFame = (): Promise<any> => {
+        return new Promise((resolve, reject) => {
+    
+
+            this.db.all(`SELECT * FROM users;`, (err: any, rows: any) => {
+                
+                console.log('rows', rows);
+                console.log('err', err);
+
+                if (rows !== undefined) {
+                    resolve(rows);
+                }
+
+                if (err !== undefined) {
+                    console.log(`can't list ranking`);
                     reject();
                 }
             });

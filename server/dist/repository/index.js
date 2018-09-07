@@ -14,11 +14,26 @@ class Repository {
             `, (res, err) => {
                     if (res !== undefined) {
                         console.log(res);
-                        console.log(`user ${user} created ok!`);
+                        console.log(`user ${user} updated/created ok!`);
                         resolve();
                     }
                     if (err !== undefined) {
                         console.log(`can't create user ${err}`);
+                        reject();
+                    }
+                });
+            });
+        };
+        this.getHallOfFame = () => {
+            return new Promise((resolve, reject) => {
+                this.db.all(`SELECT * FROM users;`, (err, rows) => {
+                    console.log('rows', rows);
+                    console.log('err', err);
+                    if (rows !== undefined) {
+                        resolve(rows);
+                    }
+                    if (err !== undefined) {
+                        console.log(`can't list ranking`);
                         reject();
                     }
                 });
