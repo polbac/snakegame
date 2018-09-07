@@ -92,8 +92,8 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         const canvasHeight = window.innerHeight;
 
         return {
-            width: element.width * canvasWidth / this.SCENE_MAP.x,
-            height: element.height * canvasHeight / this.SCENE_MAP.y,
+            width: canvasWidth / this.SCENE_MAP.x,
+            height: canvasHeight / this.SCENE_MAP.y,
         };
         
     }
