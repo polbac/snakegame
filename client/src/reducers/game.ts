@@ -3,19 +3,21 @@ import { View } from '../types/view';
 import { Vec } from '../types/vector';
 import * as _ from 'lodash';
 
-class GameState {
+export class GameState {
     snake: Snake;
     fruit: Vec;
     size: Vec;
     view: View;
     score: number;
+    speed: number;
 
     constructor() {
         this.snake = new Snake();
         this.fruit = new Vec(10, 15);
-        this.size = new Vec(20, 30);
+        this.size = new Vec(28, 33);
         this.score = 0;
         this.view = View.MAIN_MENU;
+        this.speed = 1;
     }
 
     clone() : GameState {
@@ -28,7 +30,7 @@ class GameState {
         return c
     }
 
-    ended() : boolean {
+    public ended() : boolean {
         return this.snake.has_eaten_up_itself()
     }
 
@@ -36,7 +38,7 @@ class GameState {
         return this.snake.head == this.fruit;
     }
 
-    tick() : GameState {
+    tick = () : GameState => {
         if (this.snake.has_eaten_up_itself()) {
             return this
         }
@@ -46,13 +48,15 @@ class GameState {
         if (this.snake_has_eaten_fruit()) {
             this.snake.grow();
             this.score += 1;
+            this.speed *= 1.05;
         }
 
         return this
     }
+
 }
 
-class Snake {
+export class Snake {
     direction: Vec;
     head: Vec;
     body: Vec[];
@@ -101,34 +105,34 @@ export const game = (state = new GameState(), action: any): any => {
     switch (action.type) {
 
         case GameEvent.SHOW_MAIN_MENU : {
-            return {
-                ...state,
-                view: View.MAIN_MENU,
-            }
+            let s = state.clone();
+            s.view = View.MAIN_MENU;
+            return s
         }
 
         case GameEvent.START : {
-            return {
-                ...state,
-                view: View.GAME,
-                startAt: new Date(),
-            }
+            let s = state.clone();
+            s.view = View.GAME;
+            // startAt: new Date(),
+            return s
         }
 
         case GameEvent.END : {
-            return {
-                ...state,
-                view: GameEvent.END,
-                endAt: new Date(),
-            }
+            let s = state.clone();
+            s.view = View.GAME_OVER;
+            // endAt: new Date(),
+            return s
         }
 
         case GameEvent.HERO_MOVE : {
-
-            return {
-                ...state,
-                userInput: action.userInput
+            let forward = state.snake.direction.clone();
+            let back = forward.mul(new Vec(-1, -1));
+            if (action.direction.equals(forward) || action.direction.equals(back)) {
+                return state
             }
+            let s = state.clone();
+            s.snake.direction = action.direction;
+            return s
         }
 
         case GameEvent.TICK : {

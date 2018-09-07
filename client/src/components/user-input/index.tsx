@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as Swipeable from 'react-swipeable'
 
 import { heroMove } from '../../actions/game';
-import { UserInputType } from '../../types/user-input';
+import { Vec } from '../../types/vector';
 
 const mapStateToProps = (store: any) => store.game;
 
@@ -11,24 +11,24 @@ const mapStateToProps = (store: any) => store.game;
 export class UserInput extends React.Component<{}> {
     
     swipingLeft = () => {
-        this.dispatchUserInput(UserInputType.LEFT);
+        this.dispatchUserInput(Vec.left());
     }
 
     swipingRight = () => {
-        this.dispatchUserInput(UserInputType.RIGHT);
+        this.dispatchUserInput(Vec.right());
     }
 
     swipingUp = () => {
-        this.dispatchUserInput(UserInputType.UP);
+        this.dispatchUserInput(Vec.down());
     }
 
     swipingDown = () => {
-        this.dispatchUserInput(UserInputType.DOWN);
+        this.dispatchUserInput(Vec.up());
     }
 
-    dispatchUserInput = (type: UserInputType) => {
+    dispatchUserInput = (direction: Vec) => {
         const { dispatch } = this.props as any;
-        dispatch(heroMove(type));
+        dispatch(heroMove(direction));
 
     }
 

@@ -33,6 +33,11 @@ export class Vec {
         this.y -= other.y;
         return this;
     }
+    mul(other: Vec) : Vec {
+        this.x = this.x * other.x;
+        this.y = this.y * other.y;
+        return this;
+    }
     equals(other: Vec) : boolean {
         return this.x == other.x && this.y == other.y;
     }
