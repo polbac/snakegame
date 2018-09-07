@@ -101,8 +101,13 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
                             <span>{user.firstName} {user.lastName}</span>
                         </div>
     
-                        <div className='ranking'>
-                            Ranking: {snake.body.length}
+                        <div className={style.ranking}>
+                            <span  className={style.rankingTitle}>
+                                Rank
+                            </span>
+                            <span className={style.rankingPosition}>
+                                {snake.body.length}
+                            </span>
                         </div>
                     </div>
                 </div>
