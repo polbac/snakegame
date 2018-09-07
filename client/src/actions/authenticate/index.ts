@@ -4,7 +4,7 @@ import config from '../../config';
 export const saveSession = (session: any) => {
     return (dispatch: any) => {
             fetch(
-                `${config.serverURL}/authenticate`,
+                `${config.serverUrl}/authenticate`,
                 {
                     method: 'POST',
                     headers: {
