@@ -118,4 +118,22 @@ export default class Repository {
             });
         });
     }
+
+    public updateScore = (userId: string, score: number): Promise<any> => {
+        
+        return new Promise((resolve, reject) => {
+            
+            this.db.run(`
+                UPDATE users SET score = ${score} WHERE id = '${userId}';
+            `, (err: any) => {
+                if (err) {
+                    console.log(`can't update score ${err}`);
+                    reject();
+                } else {
+                    resolve();
+                }
+            });
+        });
+    }
+
 }

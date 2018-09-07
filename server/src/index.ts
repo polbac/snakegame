@@ -55,10 +55,12 @@ io.on('connection', function (socket) {
 
 
         if (authenticate && authenticate.session) {
-            let user = await repository.getUser(authenticate.session.id);
+            let user_id = authenticate.session.id;
+            let user = await repository.getUser(user_id);
 
             if (user.score == null || game.score > user.score) {
-
+                await repository.updateScore(user_id, game.score);
+                console.log('User ' + user.name + ' got ' + game.score + ' points');
             }
         }
         
