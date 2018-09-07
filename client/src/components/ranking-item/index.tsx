@@ -16,8 +16,12 @@ export const RankingPosition = styled.div`
     display: inline-block;
     width: 80px;
     color: #fff;
-    background-color: #4a90e2;
     margin-right:15px;
+    background-color: #3684c6;
+    box-shadow: 3px 3px 0 0 #a0d0fe;
+    font-size: 45px;
+    font-weight: bold;
+    color: #ffffff;
 `;
 
 export const CenterVH = styled.div`
@@ -29,13 +33,14 @@ export const CenterVH = styled.div`
 
 export const UserInfo = styled.div`
     height: 80px;
-    background-color: #ffffff;
-    border: solid 5px #4a90e2;
-    border-left:none;
     display: inline-block;
-    width: calc(100% - 180px);
+    width: calc(100% - 175px);
     vertical-align:top;
     padding: 0 30px;
+    box-shadow: 3px 3px 0 0 #d1e8fc;
+    background-color: #ffffff;
+    border: solid 3px #3684c6;
+    border-left:none;
 `
 
 export const CenterV = styled.div`
@@ -54,8 +59,8 @@ export const Name = styled.span`
     display: inline-block;
     width: 50%;
     vertical-align: middle;
-    font-size: 22px;
-    color: #4a90e2;
+    font-size: 32px;
+    color: #3684c6;
 `;
 
 export const Score = styled.span`
@@ -66,6 +71,18 @@ export const Score = styled.span`
     font-size: 22px;
     color: #4a90e2;
 `;
+
+export const ScoreLabel = styled.span`
+    font-size: 32px;
+    color: #4a90e2;
+`;
+export const ScoreNumber = styled.span`
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffd56b;
+    text-shadow: 2px 2px 0 #e8696b;
+`;
+
 
 interface RankingItemProps {
     data: any;
@@ -79,7 +96,7 @@ export default class RankingItem extends React.Component <RankingItemProps> {
             <ListItem>
                 <RankingPosition>
                     <CenterVH>
-                      <span>1{ranking}</span>  
+                      <span>{ranking}</span>  
                     </CenterVH>
                 </RankingPosition>
                 <Avatar>
@@ -91,7 +108,8 @@ export default class RankingItem extends React.Component <RankingItemProps> {
                             {name}
                         </Name>
                         <Score>
-                            2121212{score}
+                            <ScoreLabel>SCORE:</ScoreLabel>
+                            <ScoreNumber>{score}</ScoreNumber>
                         </Score>
                     </CenterV>
                 </UserInfo>
