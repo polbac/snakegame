@@ -5,15 +5,12 @@ class Repository {
     constructor() {
         this.FILE_NAME = 'db.sqlite';
         this.createUser = (user) => {
-            const { id, name, avatar, username, headline } = user;
             return new Promise((resolve, reject) => {
+                const { id, name, avatar, username, headline } = user;
                 this.db.run(`
-                INSERT INTO 
+                INSERT OR REPLACE INTO 
                     users (id, name, avatar, username, headline) 
-                VALUES
-                        (${id}, '${name}', '${avatar}', '${username}', '${headline}')
-                WHERE NOT EXISTS 
-                        (SELECT id FROM users WHERE id=${id});
+                VALUES ('${id}', '${name}', '${avatar}', '${username}', '${headline}')
             `, (res, err) => {
                     if (res !== undefined) {
                         console.log(res);
