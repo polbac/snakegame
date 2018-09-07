@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as PIXI from 'pixi.js';
 const uniqid = require('uniqid');
+import { connect } from 'react-redux';
+import { GameState } from '../../reducers/game';
 
 type GameFrameProps = {
 
@@ -11,6 +13,9 @@ type GameFrameState = {
     pixiApp: PIXI.Application | null;
 }
 
+const mapStateToProps = (store: any) => store.game;
+
+@connect(mapStateToProps)
 export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     constructor(props: any) {
         super(props);
@@ -29,19 +34,26 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     }
 
     componentDidMount() {
-        let pixiApp = new PIXI.Application(800, 600, {
+        let pixiApp = new PIXI.Application(280, 330, {
             view: document.getElementById(this.state.canvasId) as HTMLCanvasElement,
         });
 
-        console.log(pixiApp);
+        this.drawGame(pixiApp, this.props);
 
+        this.setState({canvasId: this.state.canvasId, pixiApp});
+    }
+
+    componentDidUpdate(prevProps: GameFrameProps, prevState: GameFrameState, snapshot: any) {
+
+    }
+        
+    drawGame(pixiApp: PIXI.Application, game: GameState) {
         pixiApp.renderer.backgroundColor = 0x061639;
         let player = PIXI.Sprite.fromImage('assets/images/snake_head.png');
         player.anchor.set(0.5);
         player.x = 50;
         player.y = pixiApp.renderer.height / 2;
         pixiApp.stage.addChild(player);
-
-        this.setState({canvasId: this.state.canvasId, pixiApp});
     }
+
 }

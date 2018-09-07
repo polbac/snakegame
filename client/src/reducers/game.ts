@@ -2,7 +2,7 @@ import { GameEvent } from '../types/game-event';
 import { View } from '../types/view';
 import { Vec } from '../types/vector';
 
-class GameState {
+export class GameState {
     snake: Snake;
     fruit: Vec;
     size: Vec;
@@ -16,7 +16,7 @@ class GameState {
     }
 }
 
-class Snake {
+export class Snake {
     direction: Vec;
     head: Vec;
     body: Vec[];
