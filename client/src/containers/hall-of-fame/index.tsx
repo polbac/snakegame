@@ -106,7 +106,7 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
         super(props);
         
         this.state = {
-            screen: false,
+            screen: true,
         };
     }
     componentDidMount() {

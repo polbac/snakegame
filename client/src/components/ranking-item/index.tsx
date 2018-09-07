@@ -57,7 +57,7 @@ export const Avatar = styled.div`
 
 export const Name = styled.span`
     display: inline-block;
-    width: 50%;
+    width: 70%;
     vertical-align: middle;
     font-size: 32px;
     color: #3684c6;
@@ -65,7 +65,7 @@ export const Name = styled.span`
 
 export const Score = styled.span`
     display: inline-block;
-    width: 50%;
+    width: 30%;
     vertical-align: middle;
     text-align: right;
     font-size: 22px;
