@@ -28,7 +28,7 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
         clearInterval(this.interval);
     }
 
-    tick() {
+    tick = () => {
 
         const { dispatch, game } = this.props as any;
 
