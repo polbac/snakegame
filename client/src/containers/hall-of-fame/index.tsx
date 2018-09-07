@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as QRCode from 'qrcode.react';
+import * as ioClient from 'socket.io-client'
+
 import config from '../../config';
 import RankingItem from '../../components/ranking-item';
 import { fetchRanking } from '../../actions/hall-of-fame';
@@ -9,6 +11,9 @@ import { Wrapper } from '../../components/layout';
 import { TrocaSnakeHorizontal } from '../../components/logo-snake-horizontal';
 import GameEngineLive from '../../components/game-engine-live';
 import { GameFrame } from '../../components/game-frame';
+
+
+let io = ioClient(config.serverUrl);
 
 const mapStateToProps = (state: any) => state.hallOfFame;
 
@@ -96,6 +101,8 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                 screen: !this.state.screen,
             })
         }, this.INTERVAL_TIME); */
+
+        io.on('syncLive', (x: any) => console.log(x) );
     }
 
     componentWillMount() {
@@ -136,10 +143,10 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     </RankingView>
                 )}
 
-                <GameEngineLive >
-                    <GameFrame key='live' />
-                </GameEngineLive>
                 
+                
+                
+
             </Wrapper>
         );
     }   
