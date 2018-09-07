@@ -19,11 +19,11 @@ export class UserInput extends React.Component<{}> {
     }
 
     swipingUp = () => {
-        this.dispatchUserInput(Vec.up());
+        this.dispatchUserInput(Vec.down());
     }
 
     swipingDown = () => {
-        this.dispatchUserInput(Vec.down());
+        this.dispatchUserInput(Vec.up());
     }
 
     dispatchUserInput = (direction: Vec) => {
