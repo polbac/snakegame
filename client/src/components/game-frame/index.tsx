@@ -65,15 +65,27 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         
         return (
             <div>
-                <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: '100%', position: 'fixed' }} id={ this.state.canvasId }></canvas>
-                <div className={style.gameStatus}>
-                    <div className='profile'>
-                        <Image8Bit src={authenticate.session.pictureUrl} squares={45}/>
-                        {authenticate.session.firstName} {authenticate.session.lastName}
+                <div>
+                    <span className={style.scoreText}>SCORE</span>
+                    <div className={style.score}>
+                        <span className={style.scoreImage}></span>
+                        <span className={style.scoreValue}>1234567</span>
                     </div>
-
-                    <div className='ranking'>
-                        Ranking: 10
+                </div>
+               
+                <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: 'calc(100% - 40px)', position: 'fixed' }} id={ this.state.canvasId }></canvas>
+                <div className={style.gameStatus}>
+                    <div className={style.profile}>
+                        <Image8Bit src={authenticate.session.pictureUrl} squares={58}/>
+                    </div>
+                    <div className={style.userInfo}>
+                        <div className={style.userName}>
+                            <span>{authenticate.session.firstName} {authenticate.session.lastName}</span>
+                        </div>
+    
+                        <div className='ranking'>
+                            Ranking: 10
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,7 +114,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         this.pixiApp = new PIXI.Application(window.innerWidth, window.innerHeight, {
             view: document.getElementById(this.state.canvasId) as HTMLCanvasElement,
         });
-        this.pixiApp.renderer.backgroundColor = 0x061639;
+        this.pixiApp.renderer.transparent = true;
         
         this.player = PIXI.Sprite.fromImage('assets/images/head.png');
         this.player.width = this.mapRealSize(this.player).width;
