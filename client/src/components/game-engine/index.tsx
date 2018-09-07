@@ -48,7 +48,6 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
     render(){
         return (
             <div>
-                GAME ENGINE
                 {this.props.children}
             </div>
         );
