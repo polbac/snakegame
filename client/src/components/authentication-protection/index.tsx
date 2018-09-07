@@ -1,16 +1,23 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { saveSession } from '../../actions/authenticate';
-
 import { navigateToGame } from '../../actions/navigate';
+
+import styled from "styled-components";
 import { Content } from '../layout'; 
-import LogoSnake from '../logo-snake';
+import { TrocaSnake } from '../logo-snake';
 import Paragraph from '../paragraph';
 import LinkedinButton from '../linkedin';
 
 const browser: any = window;
 
 const mapStateToProps = (store: any) => store.authenticate;
+
+const LogoSnake = styled.div`
+    max-width:300px;
+    margin: 0 auto 45px auto;
+    text-align:center;
+`;
 
 type AuthenticationProtectionState = {
     loading: boolean,
@@ -69,7 +76,9 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         if (session === null) {
             return (
                 <Content login>
-                    <LogoSnake></LogoSnake>
+                    <LogoSnake>
+                        <TrocaSnake />
+                    </LogoSnake>
                     <Paragraph>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</Paragraph>
                     <LinkedinButton><script type="in/Login"></script></LinkedinButton>    
                     <Paragraph>Type something</Paragraph>
