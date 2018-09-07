@@ -1,4 +1,5 @@
 import { GameEvent } from '../../types/game-event';
+import { SocketEvent } from '../../types/socket-event';
 import * as ioClient from 'socket.io-client'
 import config from '../../config';
 
@@ -6,14 +7,17 @@ let io = ioClient(config.serverUrl);
 
 
 export const syncGameMiddleware = (store: any) => (next: any) => (action: any) => {
+
+    let socketEvent = intoSocketEvent(action.type);
     
-    if (!shouldSyncState(store, action)) {
+    if (!socketEvent) {
         return next(action);    
     }
 
     const { game,  authenticate } = store.getState();
 
     io.emit('sync', {
+        event: socketEvent,
         game,
         authenticate
     });
@@ -21,9 +25,13 @@ export const syncGameMiddleware = (store: any) => (next: any) => (action: any) =
     return next(action);
 };
 
-const shouldSyncState = (store: any, action: any): boolean => {
-    return action.type === GameEvent.START
-        || action.type === GameEvent.END
-        || action.type === GameEvent.FRUIT_EATEN
-        || action.type === GameEvent.HERO_MOVE
-}   
+const intoSocketEvent = (event: GameEvent) : SocketEvent|null => {
+    switch (event) {
+        case GameEvent.START: return SocketEvent.START;
+        case GameEvent.END: return SocketEvent.END;
+        case GameEvent.FRUIT_EATEN: return SocketEvent.FRUIT_EATEN;
+        case GameEvent.HERO_MOVE: return SocketEvent.DIRECTION_CHANGE;
+        default: return null;
+    }
+}
+
