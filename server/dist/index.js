@@ -46,7 +46,7 @@ app.get('/hall-of-fame', (req, res) => __awaiter(this, void 0, void 0, function*
     }
 }));
 io.on('connection', function (socket) {
-    socket.on('HeroMove', function (data) {
+    socket.on('sync', function (data) {
     });
 });
 //# sourceMappingURL=index.js.map

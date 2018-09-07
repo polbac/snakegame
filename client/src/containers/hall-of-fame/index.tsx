@@ -83,11 +83,11 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
         const { dispatch } = this.props as any;
         dispatch(fetchRanking());
 
-        this.interval = setInterval(() => {
+        /* this.interval = setInterval(() => {
             this.setState({
                 screen: !this.state.screen,
             })
-        }, this.INTERVAL_TIME);
+        }, this.INTERVAL_TIME); */
     }
 
     componentWillMount() {
@@ -126,6 +126,8 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                         </RankingList>
                     </RankingView>
                 )}
+
+                
             </Wrapper>
         );
     }   

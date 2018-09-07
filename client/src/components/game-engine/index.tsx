@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { startGame, tick, endGame } from '../../actions/game';
 
 type GameEngineProps = {
@@ -11,7 +10,6 @@ type GameEngineState = {
     imageId: string;
 }
 
-@connect(store => store)
 export class GameEngine extends React.Component<GameEngineProps, GameEngineState> {
 
     interval: any;
@@ -19,6 +17,7 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
 
     componentDidMount() {
         const { dispatch } = this.props as any;
+
         dispatch(
             startGame()
         );
@@ -35,7 +34,7 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
             clearInterval(this.interval);
         }
 
-        this.interval = setInterval(() => this.tick(), 1000 / game.speed);
+        this.interval = setInterval(() => this.tick(), 500 / game.speed);
     }
 
     componentWillUnmount() {
