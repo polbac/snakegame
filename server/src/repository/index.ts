@@ -35,27 +35,29 @@ export default class Repository {
         });
     }
 
-    public createUser = (user: User) => {
-        this.db.run(`
-        CREATE TABLE 
-            IF NOT EXISTS 
-                users (
-                    id TEXT PRIMARY KEY, 
-                    name TEXT,
-                    score INTEGER,
-                    avatar TEXT,
-                    headline TEXT,
-                    username TEXT
-                )
-    `, (res: any, err: any) => {
-        if (res !== null) {
-            console.log(`user ${user} created ok!`);
-        }
+    public createUser = (user: User): Promise<any> => {
+        const { id, name, avatar, username, headline } = user;
+        return new Promise((resolve, reject) => {
+            this.db.run(`
+                INSERT INTO 
+                    users (id, name, avatar, username, headline) 
+                VALUES
+                        (${id}, '${name}', '${avatar}', '${username}', '${headline}')
+                WHERE NOT EXISTS 
+                        (SELECT id FROM users WHERE id=${id});
+            `, (res: any, err: any) => {
+                if (res !== undefined) {
+                    console.log(res);
+                    console.log(`user ${user} created ok!`);
+                    resolve();
+                }
 
-        if (err !== null) {
-            console.log(`can't create user ${user}`);
-        }
-    });
+                if (err !== undefined) {
+                    console.log(`can't create user ${err}`);
+                    reject();
+                }
+            });
+        });
     }
     
 }
