@@ -47,6 +47,6 @@ app.get('/hall-of-fame', async (req, res) => {
 });
 
 io.on('connection', function (socket) {
-    socket.on('HeroMove', function (data) {
+    socket.on('sync', function (data) {
   });
 });

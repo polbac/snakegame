@@ -7,6 +7,8 @@ import { fetchRanking } from '../../actions/hall-of-fame';
 import styled from "styled-components";
 import { Wrapper } from '../../components/layout'; 
 import { TrocaSnakeHorizontal } from '../../components/logo-snake-horizontal';
+import GameEngineLive from '../../components/game-engine-live';
+import { GameFrame } from '../../components/game-frame';
 
 const mapStateToProps = (state: any) => state.hallOfFame;
 
@@ -69,8 +71,10 @@ type HallOfFameState = {
 export class HallOfFame extends React.Component<{}, HallOfFameState> {
     
     private interval: any;
+    private intervalFetchRanking: any;
 
     readonly INTERVAL_TIME: number = 5000;
+    readonly INTERVAL_FETCH_RANKING: number = 500;
 
     constructor(props: any) {
         super(props);
@@ -83,15 +87,20 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
         const { dispatch } = this.props as any;
         dispatch(fetchRanking());
 
-        this.interval = setInterval(() => {
+        this.intervalFetchRanking = setInterval(() => {
+            dispatch(fetchRanking());
+        }, this.INTERVAL_FETCH_RANKING);
+
+        /* this.interval = setInterval(() => {
             this.setState({
                 screen: !this.state.screen,
             })
-        }, this.INTERVAL_TIME);
+        }, this.INTERVAL_TIME); */
     }
 
     componentWillMount() {
         clearInterval(this.interval);
+        clearInterval(this.intervalFetchRanking);
     }
 
     render(){
@@ -126,6 +135,11 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                         </RankingList>
                     </RankingView>
                 )}
+
+                <GameEngineLive >
+                    <GameFrame key='live' />
+                </GameEngineLive>
+                
             </Wrapper>
         );
     }   

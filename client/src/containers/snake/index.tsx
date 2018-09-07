@@ -4,9 +4,9 @@ import { AuthenticationProtection } from '../../components/authentication-protec
 import { View } from '../../types/view';
 import { MainMenu } from '../../components/main-menu';
 import { UserInput } from '../../components/user-input';
-import { GameEngine } from '../../components/game-engine';
 import { GameFrame } from '../../components/game-frame';
 import { GameOver } from '../../components/game-over';
+import GameEnginePlayer from '../../components/game-engine-player'
 
 import { Wrapper } from '../../components/layout';
  
@@ -26,9 +26,9 @@ export default class Snake extends React.Component<{}> {
                     
                     { game.view === View.GAME && (
                         <UserInput>
-                            <GameEngine>
-                                <GameFrame />
-                            </GameEngine>
+                            <GameEnginePlayer>
+                                <GameFrame target='game'/>
+                            </GameEnginePlayer>
                         </UserInput>
                     )}
                     
