@@ -4,13 +4,37 @@ import {
 } from './../actions/actionTypes';
 
 import { View } from '../types/view';
+import { Vec } from '../types/vector';
 
-const INIT_STATE_GAME: any = {
-    userInput: null,
-    view: View.MAIN_MENU,
-};
+class GameState {
+    snake: Snake;
+    fruit: Vec;
+    size: Vec;
 
-export const game = (state = INIT_STATE_GAME, action: any): any => {
+    constructor() {
+        this.snake = new Snake();
+        this.fruit = new Vec(10, 15);
+        this.size = new Vec(20, 30);
+    }
+}
+
+class Snake {
+    direction: Vec;
+    head: Vec;
+    body: Vec[];
+
+    constructor() {
+        this.head = new Vec(10, 10);
+        this.body = [
+            this.head.clone().add(new Vec(-1, 0)),
+            this.head.clone().add(new Vec(-2, 0)),
+            this.head.clone().add(new Vec(-2, -1)),
+        ];
+        this.direction = Vec.right();
+    }
+}
+
+export const game = (state = new GameState(), action: any): any => {
     switch (action.type) {
 
         case NAVIGATE_TO_GAME : {
