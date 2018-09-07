@@ -14,10 +14,12 @@ export const saveSession = (session: any) => {
                     body: JSON.stringify(session),
                 },
             )
-            .then( () => {
+            .then( response => response.json())
+            .then( (data: any) => {
+                console.log(data)
                 dispatch({
                     type: SAVE_SESSION,
-                    session,
+                    session: data.userInformation,
                 });
             })
             .catch(error => console.log(error) );
