@@ -26,6 +26,12 @@ export const eatFruit = () => {
     }
 }
 
+export const tick = () => {
+    return {
+        type: GameEvent.TICK,
+    }
+}
+
 export const heroMove = (type: UserInputType) => {
     return {
         type: GameEvent.HERO_MOVE,
