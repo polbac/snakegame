@@ -29,7 +29,8 @@ app.get('/', function (req, res) {
 app.post('/authenticate', (req, res) => __awaiter(this, void 0, void 0, function* () {
     try {
         yield repository.createUser(mapUserRequest_1.mapUserRequest(req.body));
-        res.send({ status: true });
+        const userInformation = yield repository.getUserInformation(req.body.id);
+        res.send({ status: true, userInformation });
     }
     catch (error) {
         res.send({ status: false, error });
@@ -47,6 +48,9 @@ app.get('/hall-of-fame', (req, res) => __awaiter(this, void 0, void 0, function*
 }));
 io.on('connection', function (socket) {
     socket.on('sync', function (data) {
+        let { event, game, authenticate } = data;
+        console.log(game);
+        socket.broadcast.emit('sync', data);
     });
 });
 //# sourceMappingURL=index.js.map

@@ -39,6 +39,19 @@ class Repository {
                 });
             });
         };
+        this.getUserInformation = (id) => {
+            return new Promise((resolve, reject) => {
+                this.db.all(`SELECT * FROM users WHERE id = '${id}';`, (err, rows) => {
+                    if (rows !== undefined) {
+                        resolve(Object.assign({}, rows[0], { ranking: Math.floor(Math.random() * 10) }));
+                    }
+                    if (err !== undefined) {
+                        console.log(`can't list ranking`);
+                        reject();
+                    }
+                });
+            });
+        };
         this.db = new sqlite3.Database(this.FILE_NAME, sqlite3.OPEN_READWRITE, (err) => {
             if (err !== null) {
                 return console.log(err);

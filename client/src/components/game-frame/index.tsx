@@ -94,11 +94,12 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
                 <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: 'calc(100% - 40px)', position: 'fixed' }} id={ this.state.canvasId }></canvas>
                 <div className={style.gameStatus}>
                     <div className={style.profile}>
-                        <Image8Bit src={user.pictureUrl} squares={58}/>
+                        <Image8Bit src={user.avatar} squares={58}/>
                     </div>
                     <div className={style.userInfo}>
                         <div className={style.userName}>
-                            <span>{user.firstName} {user.lastName}</span>
+                            <b>{user.username}</b>
+                            <p>{user.headline}</p>
                         </div>
     
                         <div className={style.ranking}>
@@ -106,7 +107,7 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
                                 Rank
                             </span>
                             <span className={style.rankingPosition}>
-                                {snake.body.length}
+                                {user.ranking}
                             </span>
                         </div>
                     </div>
@@ -134,7 +135,6 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     }
 
     componentDidMount() {
-        console.log('>>>>', this.props);
         this.pixiApp = new PIXI.Application(window.innerWidth, window.innerHeight, {
             view: document.getElementById(this.state.canvasId) as HTMLCanvasElement,
         });
