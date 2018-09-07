@@ -1,5 +1,5 @@
 import { GameEvent } from './../../types/game-event';
-import { UserInputType } from '../../types/user-input';
+import { Vec } from '../../types/vector';
 
 export const showMainMenu = () => {
     return {
@@ -32,9 +32,9 @@ export const tick = () => {
     }
 }
 
-export const heroMove = (type: UserInputType) => {
+export const heroMove = (direction: Vec) => {
     return {
+        direction,
         type: GameEvent.HERO_MOVE,
-        userInput: type,
     }
 }
