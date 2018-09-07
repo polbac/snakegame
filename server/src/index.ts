@@ -11,6 +11,11 @@ app.get('/', function (req, res) {
   res.send('hello world');
 });
 
+app.post('/authenticate', function (req, res) {
+  console.log(req);
+  res.send('ble');
+});
+
 io.on('connection', function (socket) {
     socket.on('HeroMove', function (data) {
   });

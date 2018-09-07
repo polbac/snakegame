@@ -1,5 +1,6 @@
 
 import * as sqlite3 from 'sqlite3';
+import { User } from '../types/user';
 
 export default class Repository {
 
@@ -15,7 +16,7 @@ export default class Repository {
           });
     }
 
-    assertToCreateTable() {
+    private assertToCreateTable() {
         this.db.run(`
             CREATE TABLE 
                 IF NOT EXISTS 
@@ -32,6 +33,29 @@ export default class Repository {
                 console.log('table created ok!');
             }
         });
+    }
+
+    public createUser = (user: User) => {
+        this.db.run(`
+        CREATE TABLE 
+            IF NOT EXISTS 
+                users (
+                    id TEXT PRIMARY KEY, 
+                    name TEXT,
+                    score INTEGER,
+                    avatar TEXT,
+                    headline TEXT,
+                    username TEXT
+                )
+    `, (res: any, err: any) => {
+        if (res !== null) {
+            console.log(`user ${user} created ok!`);
+        }
+
+        if (err !== null) {
+            console.log(`can't create user ${user}`);
+        }
+    });
     }
     
 }
