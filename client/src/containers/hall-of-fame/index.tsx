@@ -9,10 +9,8 @@ import { fetchRanking } from '../../actions/hall-of-fame';
 import styled from "styled-components";
 import { Wrapper } from '../../components/layout'; 
 import { TrocaSnakeHorizontal } from '../../components/logo-snake-horizontal';
-import GameEngineLive from '../../components/game-engine-live';
-import { GameFrame } from '../../components/game-frame';
-import { saveLive } from '../../actions/live';
 
+import { Content } from '../../components/layout'; 
 
 let io = ioClient(config.serverUrl);
 
@@ -28,16 +26,22 @@ const InviteView = styled.section`
     justify-content:center;
 `
 const InviteLogoSnake = styled.div`
-    max-width:680px;
+    max-width:480px;
     margin: 0 auto 45px auto;
     text-align:center;
 `
 
 const H1 = styled.h1`
     font-size:20px;
-    color: #fff;
+    color: #3684c6;
     margin:48px auto 80px auto;
     max-width: 1000px;
+
+    @media (max-width: 768px) {
+        font-size:15px;
+        margin:15px auto 20px auto;
+        max-width: 300px;
+    }
 `
 const RankingView = styled.section`
     width: 100%;
@@ -51,22 +55,37 @@ const RankingHeader = styled.div`
     margin-bottom:30px;
 `
 const RankingLogoSnake = styled.div`
-    width:300px;
+    width:475px;
     display:inline-block;
     vertical-align:middle;
 `
 
 const RankingHeaderLabel = styled.div`
-    font-size: 30px;
-    color: #4a90e2;
     display:inline-block;
     text-align:right;
     vertical-align:middle;
-    width: calc(100% - 305px);
+    width: calc(100% - 480px);
+`
+
+const RankingHeaderLabelTop = styled.div`
+    font-size: 60px;
+    font-weight: bold;
+    display:inline-block;
+    color: #3684c6;
+    margin-right:20px;
+    text-shadow: 3px 3px 0 #d1e8fc;
+`
+
+const RankingHeaderLabelNumber = styled.div`
+  font-size: 60px;
+  font-weight: bold;
+  display:inline-block;
+  color: #ffd56b;
+  text-shadow: 3px 3px 0 #e8696b;
 `
 
 const RankingList = styled.ul`
-    background: white;
+ 
 `
 
 type HallOfFameState = {
@@ -119,33 +138,37 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
 
         return (
             <Wrapper>
-                {screen === true && (
-                    <InviteView>
-                        <div>
-                            <InviteLogoSnake>
-                                <TrocaSnakeHorizontal />
-                            </InviteLogoSnake>
-                            <H1>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</H1>
-                            <QRCode value={config.appUrl} size={280} />
-                        </div>
-                    </InviteView>
-                )}
-               
-                {screen === false && (
-                    <RankingView>
-                        <RankingHeader>
-                            <RankingLogoSnake>
-                                <TrocaSnakeHorizontal />
-                            </RankingLogoSnake>
-                            <RankingHeaderLabel>Top 10</RankingHeaderLabel>
-                        </RankingHeader>
-        
-                        <RankingList>
-                            {ranking.map( (item: any) => <RankingItem data={item} />)}
-                        </RankingList>
-                    </RankingView>
-                )}
-
+                <Content hall>
+                    {screen === true && (
+                        <InviteView>
+                            <div>
+                                <InviteLogoSnake>
+                                    <TrocaSnakeHorizontal />
+                                </InviteLogoSnake>
+                                <H1>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</H1>
+                                <QRCode value={config.appUrl} size={280} />
+                            </div>
+                        </InviteView>
+                    )}
+                
+                    {screen === false && (
+                        <RankingView>
+                            <RankingHeader>
+                                <RankingLogoSnake>
+                                    <TrocaSnakeHorizontal />
+                                </RankingLogoSnake>
+                                <RankingHeaderLabel>
+                                    <RankingHeaderLabelTop>TOP</RankingHeaderLabelTop>
+                                    <RankingHeaderLabelNumber>10</RankingHeaderLabelNumber>
+                                </RankingHeaderLabel>
+                            </RankingHeader>
+            
+                            <RankingList>
+                                {ranking.map( (item: any) => <RankingItem data={item} />)}
+                            </RankingList>
+                        </RankingView>
+                    )}
+                </Content>
             </Wrapper>
         );
     }   

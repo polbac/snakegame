@@ -1,5 +1,5 @@
 .gameStatus {
-    position: fixed;
+    position: absolute;
     bottom: 15px;
     left: 20px;
     width: calc(100% - 40px);
@@ -14,14 +14,17 @@
     box-shadow: 2px 2px 0 0 #d1e8fc;
     background-color: #ffffff;
     height: 58px;
-    padding: 7px 0;
+    padding: 6px 0 7px 0;
 }
 .profile{
     width: 58px;
     display: inline-block;
     vertical-align: top;
 }
-
+canvas{
+    box-shadow: 2px 2px 0 0 #d1e8fc;
+    border: solid 1px #3684c6;
+}
 .userName{
     font-size: 12px;
     font-weight: bold;
@@ -29,9 +32,11 @@
     display: inline-block;
     color: #3684c6;
     margin-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
 }
 
-.userName span{
+.userName span, .userName b, .userName p {
     vertical-align: middle;
 }
 .ranking{
