@@ -7,6 +7,8 @@ import { fetchRanking } from '../../actions/hall-of-fame';
 import styled from "styled-components";
 import { Wrapper } from '../../components/layout'; 
 import { TrocaSnakeHorizontal } from '../../components/logo-snake-horizontal';
+import GameEngineLive from '../../components/game-engine-live';
+import { GameFrame } from '../../components/game-frame';
 
 const mapStateToProps = (state: any) => state.hallOfFame;
 
@@ -127,6 +129,9 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     </RankingView>
                 )}
 
+                <GameEngineLive key='game'>
+                    <GameFrame />
+                </GameEngineLive>
                 
             </Wrapper>
         );

@@ -27,7 +27,7 @@ export default class Snake extends React.Component<{}> {
                     { game.view === View.GAME && (
                         <UserInput>
                             <GameEnginePlayer>
-                                <GameFrame />
+                                <GameFrame target='game'/>
                             </GameEnginePlayer>
                         </UserInput>
                     )}

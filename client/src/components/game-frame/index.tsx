@@ -11,8 +11,14 @@ type GameFrameState = {
     pixiApp: PIXI.Application | null;
 }
 
+type GameFrameProps = {
+    target?: string;
+    authenticate?: any;
+    live?: any;
+}
+
 @connect((store: any) => store)
-export class GameFrame extends React.Component<{}, GameFrameState> {
+export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     
     private pixiApp: any;
     private player: any;
@@ -26,6 +32,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
 
     constructor(props: any) {
         super(props);
+        
         this.state = {
             canvasId: `canvas-${uniqid()}`,
             pixiApp: null,
@@ -34,7 +41,8 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     }
 
     componentDidUpdate() {
-        const { snake, fruit } = (this.props as any).game;
+        
+        const { snake, fruit } = (this.props as any)[this.props.target];
 
         this.player.x = this.mapRealPosition(snake.head).x;
         this.player.y = this.mapRealPosition(snake.head).y;
@@ -61,15 +69,23 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     }
 
     render() {
-        const { authenticate } = this.props as any;
-        
+        let user: any = {};
+
+        if (this.props.target === 'game') {
+            user = this.props.authenticate.session;
+        }
+
+        if (this.props.target === 'live') {
+            user = this.props.live.session;
+        }
+
         return (
             <div>
                 <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: '100%', position: 'fixed' }} id={ this.state.canvasId }></canvas>
                 <div className={style.gameStatus}>
                     <div className='profile'>
-                        <Image8Bit src={authenticate.session.pictureUrl} squares={45}/>
-                        {authenticate.session.firstName} {authenticate.session.lastName}
+                        <Image8Bit src={user.pictureUrl} squares={45}/>
+                        {user.firstName} {user.lastName}
                     </div>
 
                     <div className='ranking'>
@@ -99,6 +115,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     }
 
     componentDidMount() {
+        console.log('>>>>', this.props);
         this.pixiApp = new PIXI.Application(window.innerWidth, window.innerHeight, {
             view: document.getElementById(this.state.canvasId) as HTMLCanvasElement,
         });
