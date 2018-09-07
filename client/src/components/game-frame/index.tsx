@@ -44,42 +44,54 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
         
         const { snake, fruit } = (this.props as any)[this.props.target];
 
-        this.player.x = this.mapRealPosition(snake.head).x;
-        this.player.y = this.mapRealPosition(snake.head).y;
+        if (snake !== undefined) {
+            this.player.x = this.mapRealPosition(snake.head).x;
+            this.player.y = this.mapRealPosition(snake.head).y;
 
-        this.fruit.x = this.mapRealPosition(fruit).x;
-        this.fruit.y = this.mapRealPosition(fruit).y;
+            this.fruit.x = this.mapRealPosition(fruit).x;
+            this.fruit.y = this.mapRealPosition(fruit).y;
 
-        snake.body.forEach((part: any, index: any) => {
-            if (this.bodyParts[index] == undefined) {
-                const bodyPart = PIXI.Sprite.fromImage('assets/images/body.png');
-                bodyPart.width = this.mapRealSize(bodyPart).width;
-                bodyPart.height = this.mapRealSize(bodyPart).height;
-                bodyPart.x = this.mapRealPosition(part).x;
-                bodyPart.y = this.mapRealPosition(part).y;
-                this.pixiApp.stage.addChild(bodyPart);
-                this.bodyParts.push(bodyPart);
-                return;
-            }
+            snake.body.forEach((part: any, index: any) => {
+                if (this.bodyParts[index] == undefined) {
+                    const bodyPart = PIXI.Sprite.fromImage('assets/images/body.png');
+                    bodyPart.width = this.mapRealSize(bodyPart).width;
+                    bodyPart.height = this.mapRealSize(bodyPart).height;
+                    bodyPart.x = this.mapRealPosition(part).x;
+                    bodyPart.y = this.mapRealPosition(part).y;
+                    this.pixiApp.stage.addChild(bodyPart);
+                    this.bodyParts.push(bodyPart);
+                    return;
+                }
 
-            this.bodyParts[index].x = this.mapRealPosition(part).x;
-            this.bodyParts[index].y = this.mapRealPosition(part).y;
-        });
-
+                this.bodyParts[index].x = this.mapRealPosition(part).x;
+                this.bodyParts[index].y = this.mapRealPosition(part).y;
+            });
+        }
     }
 
     render() {
         let user: any = {};
 
-        const { snake } = (this.props as any)[this.props.target];
+        let { snake } = (this.props as any)[this.props.target];
 
         if (this.props.target === 'game') {
+
             user = this.props.authenticate.session;
         }
 
         if (this.props.target === 'live') {
-            user = this.props.live.session;
+
+            if (this.props.live.hasOwnProperty('live') === false){
+                return <p></p>
+            }
+            if ( this.props.live.live.authenticate.session === null) {
+                return <p></p>
+            }
+            user = this.props.live.live.authenticate.session;
+            snake = this.props.live.live.game.snake;
+            
         }
+
 
         return (
             <div>

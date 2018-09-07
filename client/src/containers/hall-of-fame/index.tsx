@@ -9,8 +9,7 @@ import { fetchRanking } from '../../actions/hall-of-fame';
 import styled from "styled-components";
 import { Wrapper } from '../../components/layout'; 
 import { TrocaSnakeHorizontal } from '../../components/logo-snake-horizontal';
-import GameEngineLive from '../../components/game-engine-live';
-import { GameFrame } from '../../components/game-frame';
+
 import { Content } from '../../components/layout'; 
 
 let io = ioClient(config.serverUrl);
@@ -117,13 +116,15 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
             dispatch(fetchRanking());
         }, this.INTERVAL_FETCH_RANKING);
 
-        /* this.interval = setInterval(() => {
+        this.interval = setInterval(() => {
             this.setState({
                 screen: !this.state.screen,
             })
-        }, this.INTERVAL_TIME); */
+        }, this.INTERVAL_TIME);
 
-        io.on('syncLive', (x: any) => console.log(x) );
+        io.on('syncLive', (res: any) => {
+            console.log(res)
+        });
     }
 
     componentWillMount() {

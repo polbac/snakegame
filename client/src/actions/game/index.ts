@@ -38,3 +38,4 @@ export const heroMove = (direction: Vec) => {
         type: GameEvent.HERO_MOVE,
     }
 }
+
