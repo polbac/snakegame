@@ -14,7 +14,7 @@ export const startGame = () => {
     }
 }
 
-export const startEnd = () => {
+export const endGame = () => {
     return {
         type: GameEvent.END,
     }
