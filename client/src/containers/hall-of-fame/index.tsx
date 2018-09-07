@@ -6,7 +6,7 @@ import RankingItem from '../../components/ranking-item';
 import { fetchRanking } from '../../actions/hall-of-fame';
 import styled from "styled-components";
 import { Wrapper } from '../../components/layout'; 
-import { TrocaSnake } from '../../components/logo-snake';
+import { TrocaSnakeHorizontal } from '../../components/logo-snake-horizontal';
 
 const mapStateToProps = (state: any) => state.hallOfFame;
 
@@ -104,7 +104,7 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     <InviteView>
                         <div>
                             <InviteLogoSnake>
-                                <TrocaSnake />
+                                <TrocaSnakeHorizontal />
                             </InviteLogoSnake>
                             <H1>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</H1>
                             <QRCode value={config.appUrl} size={280} />
@@ -116,7 +116,7 @@ export class HallOfFame extends React.Component<{}, HallOfFameState> {
                     <RankingView>
                         <RankingHeader>
                             <RankingLogoSnake>
-                                <TrocaSnake />
+                                <TrocaSnakeHorizontal />
                             </RankingLogoSnake>
                             <RankingHeaderLabel>Top 10</RankingHeaderLabel>
                         </RankingHeader>

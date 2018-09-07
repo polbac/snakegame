@@ -4,8 +4,8 @@ import { saveSession } from '../../actions/authenticate';
 import { navigateToGame } from '../../actions/navigate';
 
 import styled from "styled-components";
-import { Content } from '../layout'; 
-import { TrocaSnake } from '../logo-snake';
+import { Content, CenterVertical } from '../layout'; 
+import { TrocaSnakeVertical } from '../logo-snake-vertical';
 import Paragraph from '../paragraph';
 import LinkedinButton from '../linkedin';
 
@@ -76,12 +76,17 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         if (session === null) {
             return (
                 <Content login>
-                    <LogoSnake>
-                        <TrocaSnake />
-                    </LogoSnake>
-                    <Paragraph>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</Paragraph>
-                    <LinkedinButton><script type="in/Login"></script></LinkedinButton>    
-                    <Paragraph>Type something</Paragraph>
+                    <CenterVertical>
+                        <div>
+                            <LogoSnake>
+                                <TrocaSnakeVertical />
+                            </LogoSnake>
+                            <Paragraph>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</Paragraph>
+                            <LinkedinButton><script type="in/Login"></script></LinkedinButton>    
+                            <Paragraph>Type something</Paragraph>
+                        </div>
+                    </CenterVertical>
+                    
                 </Content>
             );
         }

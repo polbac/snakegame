@@ -34,6 +34,16 @@ export class GameState {
         return this.snake.has_eaten_up_itself()
     }
 
+    all_board_coordinates() {
+        return _.flatMap(_.range(this.size.x), (x) => _.map(_.range(this.size.y), (y) => new Vec(x, y) ) )
+    }
+
+    randomize_fruit() {
+        let rand = Math.random();
+        let possible_coordinates = _.filter(this.all_board_coordinates(), (pos) => !this.snake.conains(pos) );
+        this.fruit = possible_coordinates[Math.floor(rand * possible_coordinates.length)];
+    }
+
     snake_has_eaten_fruit() : boolean {
         return this.snake.head == this.fruit;
     }
@@ -49,6 +59,7 @@ export class GameState {
             this.snake.grow();
             this.score += 1;
             this.speed *= 1.05;
+            this.randomize_fruit();
         }
 
         return this
@@ -98,6 +109,10 @@ export class Snake {
 
     has_eaten_up_itself() : boolean {
         return _.some(this.body, (b) => b.equals(this.head) );
+    }
+
+    conains(pos: Vec) : boolean {
+        return _.some(this.body, (b) => b.equals(pos) ) || this.head.equals(pos);
     }
 }
 
