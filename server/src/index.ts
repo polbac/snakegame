@@ -35,6 +35,17 @@ app.post('/authenticate', async (req, res) => {
   
 });
 
+app.get('/hall-of-fame', async (req, res) => {
+  try {
+    const hallOfFame = await repository.getHallOfFame();
+    console.log(hallOfFame);
+    res.send({ status: true, hallOfFame });
+  } catch (error) {
+    res.send({ status: false, error});
+  }
+  
+});
+
 io.on('connection', function (socket) {
     socket.on('HeroMove', function (data) {
   });
