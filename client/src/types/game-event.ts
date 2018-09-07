@@ -1,8 +1,8 @@
 
 export enum GameEvent {
     START = 'start',
-    DIRECTION_CHANGE = 'directionChange',
+    HERO_MOVE = 'heroMove',
     FRUIT_EATEN = 'fruitEaten',
     END = 'end',
-    SYNC = 'sync'
+    SHOW_MAIN_MENU = 'mainMenu'
 }
