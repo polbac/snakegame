@@ -17,5 +17,7 @@ export const Content: any = styled.div`
     ${(p: any) => p.home && css`
         padding: 40px 30px;
         text-align:center;
+        height:100vh;
+        background-image: linear-gradient(to top, #ebf9f9, #ebf9f9);
     `}
 `;

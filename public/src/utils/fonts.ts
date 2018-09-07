@@ -1,1 +1,1 @@
-export const bodyFont = '"Press Start 2P"';
+export const bodyFont = '"Space Mono", monospace';
