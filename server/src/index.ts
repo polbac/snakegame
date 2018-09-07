@@ -49,7 +49,7 @@ app.get('/hall-of-fame', async (req, res) => {
 
 io.on('connection', function (socket) {
     socket.on('sync', function (data) {
-        socket.broadcast.emit('sync', data);
+        socket.broadcast.emit('syncLive', data);
 
         let { event, game, authenticate } = data;
 
