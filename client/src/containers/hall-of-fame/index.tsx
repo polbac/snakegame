@@ -10,13 +10,6 @@ import { TrocaSnake } from '../../components/logo-snake';
 
 const mapStateToProps = (state: any) => state.hallOfFame;
 
-
-const LogoSnake = styled.div`
-    max-width:680px;
-    margin: 0 auto 45px auto;
-    text-align:center;
-`
-
 const InviteView = styled.section`
     width: 100%;
     height: 100vh;
@@ -26,6 +19,11 @@ const InviteView = styled.section`
     text-align:center;
     justify-content:center;
 `
+const InviteLogoSnake = styled.div`
+    max-width:680px;
+    margin: 0 auto 45px auto;
+    text-align:center;
+`
 
 const H1 = styled.h1`
     font-size:20px;
@@ -34,9 +32,34 @@ const H1 = styled.h1`
     max-width: 1000px;
 `
 const RankingView = styled.section`
-
+    width: 100%;
+    height: 100vh;
+    padding:35px 85px 45px 85px;
 `
 
+const RankingHeader = styled.div`
+    width: 100%;
+    display:block;
+    margin-bottom:30px;
+`
+const RankingLogoSnake = styled.div`
+    width:300px;
+    display:inline-block;
+    vertical-align:middle;
+`
+
+const RankingHeaderLabel = styled.div`
+    font-size: 30px;
+    color: #4a90e2;
+    display:inline-block;
+    text-align:right;
+    vertical-align:middle;
+    width: calc(100% - 305px);
+`
+
+const RankingList = styled.ul`
+    background: white;
+`
 
 @connect(mapStateToProps)
 export class HallOfFame extends React.Component<{}> {
@@ -47,17 +70,17 @@ export class HallOfFame extends React.Component<{}> {
     }
     render(){
         const { ranking } = this.props as any;
-        const showInvite = true;
-        const showRanking = false;
+        const showInvite = false;
+        const showRanking = true;
 
         return (
             <Wrapper>
                 {showInvite && (
                     <InviteView>
                         <div>
-                            <LogoSnake>
+                            <InviteLogoSnake>
                                 <TrocaSnake />
-                            </LogoSnake>
+                            </InviteLogoSnake>
                             <H1>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</H1>
                             <QRCode value={config.appUrl} size={280} />
                         </div>
@@ -66,10 +89,16 @@ export class HallOfFame extends React.Component<{}> {
                
                 {showRanking && (
                     <RankingView>
-                        <LogoSnake>
-                            <TrocaSnake />
-                        </LogoSnake>
-                        {ranking.map( (item: any) => <RankingItem data={item} />)}
+                        <RankingHeader>
+                            <RankingLogoSnake>
+                                <TrocaSnake />
+                            </RankingLogoSnake>
+                            <RankingHeaderLabel>Top 10</RankingHeaderLabel>
+                        </RankingHeader>
+        
+                        <RankingList>
+                            {ranking.map( (item: any) => <RankingItem data={item} />)}
+                        </RankingList>
                     </RankingView>
                 )}
             </Wrapper>
