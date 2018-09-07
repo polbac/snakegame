@@ -13,7 +13,7 @@ export class GameState {
     constructor() {
         this.snake = new Snake();
         this.fruit = new Vec(10, 15);
-        this.size = new Vec(20, 30);
+        this.size = new Vec(28, 33);
         this.score = 0;
         this.view = View.MAIN_MENU;
     }
