@@ -9,6 +9,11 @@ export const Wrapper = styled.main`
 export const Content: any = styled.div`
     padding:30px;
 
+    ${(p: any) => p.login && css`
+        padding: 40px 30px;
+        text-align:center;
+    `}
+
     ${(p: any) => p.home && css`
         padding: 40px 30px;
         text-align:center;
