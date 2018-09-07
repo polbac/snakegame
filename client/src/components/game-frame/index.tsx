@@ -83,8 +83,13 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
                             <span>{authenticate.session.firstName} {authenticate.session.lastName}</span>
                         </div>
     
-                        <div className='ranking'>
-                            Ranking: 10
+                        <div className={style.ranking}>
+                            <span  className={style.rankingTitle}>
+                                Rank
+                            </span>
+                            <span className={style.rankingPosition}>
+                                340
+                            </span>
                         </div>
                     </div>
                 </div>
