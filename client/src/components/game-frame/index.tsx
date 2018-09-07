@@ -17,6 +17,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     private pixiApp: any;
     private player: any;
     private fruit: any;
+    private bodyParts: any[] = [];
 
     readonly SCENE_MAP = {
         x: 28,
@@ -33,13 +34,28 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     }
 
     componentDidUpdate() {
-        const { snake, fruit } = (this.props as any).game ;
+        const { snake, fruit } = (this.props as any).game;
 
         this.player.x = this.mapRealSize(snake.head).x;
         this.player.y = this.mapRealSize(snake.head).y;
 
         this.fruit.x = this.mapRealSize(fruit).x;
         this.fruit.y = this.mapRealSize(fruit).y;
+
+        snake.body.forEach((part: any, index: any) => {
+            if (this.bodyParts[index] == undefined) {
+                const bodyPart = PIXI.Sprite.fromImage('assets/images/snake_body.png');
+                bodyPart.x = this.mapRealSize(part).x;
+                bodyPart.y = this.mapRealSize(part).y;
+                this.pixiApp.stage.addChild(bodyPart);
+                this.bodyParts.push(bodyPart);
+                return;
+            }
+
+            this.bodyParts[index].x = this.mapRealSize(part).x;
+            this.bodyParts[index].y = this.mapRealSize(part).y;
+        });
+
     }
 
     render() {
@@ -76,13 +92,11 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         this.pixiApp.renderer.backgroundColor = 0x061639;
         
         this.player = PIXI.Sprite.fromImage('assets/images/snake_head.png');
-        // this.player.anchor.set(0.5);
         this.player.x = 50;
         this.player.y = this.pixiApp.renderer.height / 2;
         this.pixiApp.stage.addChild(this.player);
 
         this.fruit = PIXI.Sprite.fromImage('assets/images/food.png');
-        // this.fruit.anchor.set(0.5);
         this.fruit.x = 50;
         this.fruit.y = this.pixiApp.renderer.height / 2;
         this.pixiApp.stage.addChild(this.fruit);
