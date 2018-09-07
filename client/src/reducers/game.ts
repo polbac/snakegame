@@ -1,8 +1,4 @@
-import { 
-    NAVIGATE_TO_GAME, 
-    HERO_MOVE
-} from './../actions/actionTypes';
-
+import { GameEvent } from '../types/game-event';
 import { View } from '../types/view';
 
 const INIT_STATE_GAME: any = {
@@ -13,21 +9,23 @@ const INIT_STATE_GAME: any = {
 export const game = (state = INIT_STATE_GAME, action: any): any => {
     switch (action.type) {
 
-        case NAVIGATE_TO_GAME : {
+        case GameEvent.START : {
             return {
                 userInput: null,
                 view: View.GAME,
+                startAt: new Date(),
             }
         }
 
-        case View.GAME_OVER : {
+        case GameEvent.END : {
             return {
                 userInput: null,
-                view: View.GAME_OVER,
+                view: GameEvent.END,
+                endAt: new Date(),
             }
         }
 
-        case HERO_MOVE : {
+        case GameEvent.DIRECTION_CHANGE : {
             return {
                 ...state,
                 userInput: action.userInput

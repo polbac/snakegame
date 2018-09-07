@@ -9,7 +9,9 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
+  
   socket.on('HeroMove', function (data) {
     console.log(data);
   });
+  
 });
