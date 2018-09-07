@@ -11,8 +11,14 @@ type GameFrameState = {
     pixiApp: PIXI.Application | null;
 }
 
+type GameFrameProps = {
+    target?: string;
+    authenticate?: any;
+    live?: any;
+}
+
 @connect((store: any) => store)
-export class GameFrame extends React.Component<{}, GameFrameState> {
+export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     
     private pixiApp: any;
     private player: any;
@@ -26,6 +32,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
 
     constructor(props: any) {
         super(props);
+        
         this.state = {
             canvasId: `canvas-${uniqid()}`,
             pixiApp: null,
@@ -34,7 +41,8 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     }
 
     componentDidUpdate() {
-        const { snake, fruit } = (this.props as any).game;
+        
+        const { snake, fruit } = (this.props as any)[this.props.target];
 
         this.player.x = this.mapRealPosition(snake.head).x;
         this.player.y = this.mapRealPosition(snake.head).y;
@@ -61,19 +69,41 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     }
 
     render() {
-        const { authenticate } = this.props as any;
-        
+        let user: any = {};
+
+        const { snake } = (this.props as any)[this.props.target];
+
+        if (this.props.target === 'game') {
+            user = this.props.authenticate.session;
+        }
+
+        if (this.props.target === 'live') {
+            user = this.props.live.session;
+        }
+
         return (
             <div>
-                <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: '100%', position: 'fixed' }} id={ this.state.canvasId }></canvas>
-                <div className={style.gameStatus}>
-                    <div className='profile'>
-                        <Image8Bit src={authenticate.session.pictureUrl} squares={45}/>
-                        {authenticate.session.firstName} {authenticate.session.lastName}
+                <div>
+                    <span className={style.scoreText}>SCORE</span>
+                    <div className={style.score}>
+                        <span className={style.scoreImage}></span>
+                        <span className={style.scoreValue}>{snake.body.length}</span>
                     </div>
-
-                    <div className='ranking'>
-                        Ranking: 10
+                </div>
+               
+                <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: 'calc(100% - 40px)', position: 'fixed' }} id={ this.state.canvasId }></canvas>
+                <div className={style.gameStatus}>
+                    <div className={style.profile}>
+                        <Image8Bit src={user.pictureUrl} squares={58}/>
+                    </div>
+                    <div className={style.userInfo}>
+                        <div className={style.userName}>
+                            <span>{user.firstName} {user.lastName}</span>
+                        </div>
+    
+                        <div className='ranking'>
+                            Ranking: {snake.body.length}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,10 +129,11 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     }
 
     componentDidMount() {
+        console.log('>>>>', this.props);
         this.pixiApp = new PIXI.Application(window.innerWidth, window.innerHeight, {
             view: document.getElementById(this.state.canvasId) as HTMLCanvasElement,
         });
-        this.pixiApp.renderer.backgroundColor = 0x061639;
+        this.pixiApp.renderer.transparent = true;
         
         this.player = PIXI.Sprite.fromImage('assets/images/head.png');
         this.player.width = this.mapRealSize(this.player).width;

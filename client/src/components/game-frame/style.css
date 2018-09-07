@@ -1,16 +1,63 @@
 .gameStatus {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: 15px;
+    left: 20px;
+    width: calc(100% - 40px);
     color: white;
-    font-size: 10px;
+}
+.userInfo{
+    border: solid 1px #3684c6;
+    border-left: none;
+    width: calc(100% - 58px);
+    display: inline-block;
+    vertical-align: top;
+    box-shadow: 2px 2px 0 0 #d1e8fc;
+    background-color: #ffffff;
+    height: 58px;
+}
+.profile{
+    width: 58px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .gameStatus img {
-    width: 50px;
+    width: 58px;
 }
 
-.gameStatus {
-    
+
+.scoreText{
+    font-size: 17px;
+    color: #4a90e2;
+    display: inline-block;
+    vertical-align: middle;
+    width: 70px;
+}
+.score{
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(100% - 70px);
+    text-align: right;
+    margin-bottom: 5px;
+}
+.scoreImage{
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    background-color: #ffd56b;  
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.scoreValue{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 17px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #4a90e2;
+    text-shadow: 1px 1px 0 #d1e8fc;
 }

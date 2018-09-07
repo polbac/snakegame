@@ -4,6 +4,7 @@ import * as Swipeable from 'react-swipeable'
 
 import { heroMove } from '../../actions/game';
 import { Vec } from '../../types/vector';
+import { Content } from '../layout'; 
 
 const mapStateToProps = (store: any) => store.game;
 
@@ -34,14 +35,16 @@ export class UserInput extends React.Component<{}> {
 
     render() {
        return (
-           <Swipeable
-                onSwipingLeft={this.swipingLeft}
-                onSwipingRight={this.swipingRight}
-                onSwipingUp={this.swipingUp}
-                onSwipedDown={this.swipingDown}
-           >
-                {this.props.children}
-           </Swipeable>
+            <Content game>
+                <Swipeable
+                        onSwipingLeft={this.swipingLeft}
+                        onSwipingRight={this.swipingRight}
+                        onSwipingUp={this.swipingUp}
+                        onSwipedDown={this.swipingDown}
+                >
+                        {this.props.children}
+                </Swipeable>
+            </Content>
        );
     }   
 }
