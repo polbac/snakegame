@@ -40,7 +40,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         
         return (
             <div>
-                <canvas id={ this.state.canvasId }></canvas>
+                <canvas style={{ height: '100%', width: '100%', position: 'fixed' }} id={ this.state.canvasId }></canvas>
                 <div className={style.gameStatus}>
                     <div className='profile'>
                         <Image8Bit src={authenticate.session.pictureUrl} squares={45}/>
