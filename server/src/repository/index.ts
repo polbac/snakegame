@@ -80,6 +80,26 @@ export default class Repository {
             });
         });
     }
+
+    public getUserInformation = (id): Promise<any> => {
+        return new Promise((resolve, reject) => {
+
+            this.db.all(`SELECT * FROM users WHERE id = '${id}';`, (err: any, rows: any) => {
+
+                if (rows !== undefined) {
+                    resolve({
+                        ...rows[0],
+                        ranking: Math.floor(Math.random()*10)
+                    });
+                }
+
+                if (err !== undefined) {
+                    console.log(`can't list ranking`);
+                    reject();
+                }
+            });
+        });
+    }
     
     public getUser = (userId: string): Promise<any> => {
         return new Promise((resolve, reject) => {

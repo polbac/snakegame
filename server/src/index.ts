@@ -28,7 +28,8 @@ app.get('/', function (req, res) {
 app.post('/authenticate', async (req, res) => {
   try {
     await repository.createUser(mapUserRequest(req.body));
-    res.send({ status: true });
+    const userInformation = await repository.getUserInformation(req.body.id);
+    res.send({ status: true, userInformation });
   } catch (error) {
     res.send({ status: false, error});
   }
