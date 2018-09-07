@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { saveSession } from '../../actions/authenticate';
 
 import { navigateToGame } from '../../actions/navigate';
-
+import { Content } from '../layout'; 
+import LogoSnake from '../logo-snake';
+import Paragraph from '../paragraph';
+import LinkedinButton from '../linkedin';
 
 const browser: any = window;
 
@@ -64,7 +67,14 @@ export class AuthenticationProtection extends React.Component<{}, Authentication
         }
         
         if (session === null) {
-            return <script type="in/Login"></script>;
+            return (
+                <Content home>
+                    <LogoSnake></LogoSnake>
+                    <Paragraph>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</Paragraph>
+                    <LinkedinButton><script type="in/Login"></script></LinkedinButton>    
+                    <Paragraph>Type something</Paragraph>
+                </Content>
+            );
         }
 
         /* const { pictureUrl, firstName } = session; 

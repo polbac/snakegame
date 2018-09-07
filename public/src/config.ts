@@ -1,4 +1,4 @@
 export default {
-    appUrl: 'http://localhost:3000',
-    serverURL: 'http://localhost:4000'
+    appUrl: 'http://192.168.1.74:3000',
+    serverURL: 'http://192.168.1.74:4000'
 };

@@ -1,0 +1,1 @@
+export const bodyFont = '"Press Start 2P"';
