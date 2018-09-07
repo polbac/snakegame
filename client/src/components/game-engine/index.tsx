@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { startGame } from '../../actions/game';
+import { startGame, tick } from '../../actions/game';
 
 type GameEngineProps = {
 
@@ -14,12 +14,27 @@ type GameEngineState = {
 @connect(store => store.game)
 export class GameEngine extends React.Component<GameEngineProps, GameEngineState> {
 
+    interval: any;
+
     componentDidMount() {
         const { dispatch } = this.props as any;
         dispatch(
             startGame()
         );
+        this.interval = setInterval(() => this.tick(), 1000);
     }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    tick() {
+        const { dispatch } = this.props as any;
+        dispatch(
+            tick()
+        );
+    }
+
     render(){
         return (
             <div>
