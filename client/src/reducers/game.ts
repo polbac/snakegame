@@ -125,8 +125,13 @@ export const game = (state = new GameState(), action: any): any => {
         }
 
         case GameEvent.HERO_MOVE : {
+            let forward = state.snake.direction.clone();
+            let back = forward.mul(new Vec(-1, -1));
+            if (action.direction.equals(forward) || action.direction.equals(back)) {
+                return state
+            }
             let s = state.clone();
-            // CHANGE DIRECTION
+            s.snake.direction = action.direction;
             return s
         }
 
