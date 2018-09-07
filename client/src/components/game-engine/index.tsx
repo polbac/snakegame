@@ -18,7 +18,7 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
     currentSpeed: any;
 
     componentDidMount() {
-        const { dispatch, game } = this.props as any;
+        const { dispatch } = this.props as any;
         dispatch(
             startGame()
         );
@@ -30,7 +30,7 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
         const { game } = this.props as any;
         
         this.currentSpeed = game.speed;
-        
+
         if (this.interval) {
             clearInterval(this.interval);
         }

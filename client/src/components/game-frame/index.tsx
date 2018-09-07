@@ -36,24 +36,26 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
     componentDidUpdate() {
         const { snake, fruit } = (this.props as any).game;
 
-        this.player.x = this.mapRealSize(snake.head).x;
-        this.player.y = this.mapRealSize(snake.head).y;
+        this.player.x = this.mapRealPosition(snake.head).x;
+        this.player.y = this.mapRealPosition(snake.head).y;
 
-        this.fruit.x = this.mapRealSize(fruit).x;
-        this.fruit.y = this.mapRealSize(fruit).y;
+        this.fruit.x = this.mapRealPosition(fruit).x;
+        this.fruit.y = this.mapRealPosition(fruit).y;
 
         snake.body.forEach((part: any, index: any) => {
             if (this.bodyParts[index] == undefined) {
-                const bodyPart = PIXI.Sprite.fromImage('assets/images/snake_body.png');
-                bodyPart.x = this.mapRealSize(part).x;
-                bodyPart.y = this.mapRealSize(part).y;
+                const bodyPart = PIXI.Sprite.fromImage('assets/images/body.png');
+                bodyPart.width = this.mapRealSize(bodyPart).width;
+                bodyPart.height = this.mapRealSize(bodyPart).height;
+                bodyPart.x = this.mapRealPosition(part).x;
+                bodyPart.y = this.mapRealPosition(part).y;
                 this.pixiApp.stage.addChild(bodyPart);
                 this.bodyParts.push(bodyPart);
                 return;
             }
 
-            this.bodyParts[index].x = this.mapRealSize(part).x;
-            this.bodyParts[index].y = this.mapRealSize(part).y;
+            this.bodyParts[index].x = this.mapRealPosition(part).x;
+            this.bodyParts[index].y = this.mapRealPosition(part).y;
         });
 
     }
@@ -63,7 +65,7 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         
         return (
             <div>
-                <canvas style={{ height: '100%', width: '100%', position: 'fixed' }} id={ this.state.canvasId }></canvas>
+                <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: '100%', position: 'fixed' }} id={ this.state.canvasId }></canvas>
                 <div className={style.gameStatus}>
                     <div className='profile'>
                         <Image8Bit src={authenticate.session.pictureUrl} squares={45}/>
@@ -78,11 +80,22 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         );
     }
 
-    mapRealSize = (pos: Vec): Vec => {
+    mapRealPosition = (pos: Vec): Vec => {
         const canvasWidth = window.innerWidth;
         const canvasHeight = window.innerHeight;
 
         return new Vec(pos.x * canvasWidth / this.SCENE_MAP.x, pos.y * canvasHeight / this.SCENE_MAP.y);
+    }
+
+    mapRealSize = (element: any): any => {
+        const canvasWidth = window.innerWidth;
+        const canvasHeight = window.innerHeight;
+
+        return {
+            width: element.width * canvasWidth / this.SCENE_MAP.x,
+            height: element.height * canvasHeight / this.SCENE_MAP.y,
+        };
+        
     }
 
     componentDidMount() {
@@ -91,13 +104,17 @@ export class GameFrame extends React.Component<{}, GameFrameState> {
         });
         this.pixiApp.renderer.backgroundColor = 0x061639;
         
-        this.player = PIXI.Sprite.fromImage('assets/images/snake_head.png');
+        this.player = PIXI.Sprite.fromImage('assets/images/head.png');
+        this.player.width = this.mapRealSize(this.player).width;
+        this.player.height = this.mapRealSize(this.player).height;
         this.player.x = 50;
         this.player.y = this.pixiApp.renderer.height / 2;
         this.pixiApp.stage.addChild(this.player);
 
-        this.fruit = PIXI.Sprite.fromImage('assets/images/food.png');
+        this.fruit = PIXI.Sprite.fromImage('assets/images/fruit.png');
         this.fruit.x = 50;
+        this.fruit.width = this.mapRealSize(this.fruit).width;
+        this.fruit.height = this.mapRealSize(this.fruit).height;
         this.fruit.y = this.pixiApp.renderer.height / 2;
         this.pixiApp.stage.addChild(this.fruit);
 
