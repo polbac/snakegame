@@ -21,7 +21,10 @@
     display: inline-block;
     vertical-align: top;
 }
-
+canvas{
+    box-shadow: 2px 2px 0 0 #d1e8fc;
+    border: solid 1px #3684c6;
+}
 .userName{
     font-size: 12px;
     font-weight: bold;
