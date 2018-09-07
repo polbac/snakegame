@@ -61,21 +61,46 @@ const RankingList = styled.ul`
     background: white;
 `
 
+type HallOfFameState = {
+    screen: boolean;
+}
+
 @connect(mapStateToProps)
-export class HallOfFame extends React.Component<{}> {
+export class HallOfFame extends React.Component<{}, HallOfFameState> {
+    
+    private interval: any;
+
+    readonly INTERVAL_TIME: number = 5000;
+
+    constructor(props: any) {
+        super(props);
+        
+        this.state = {
+            screen: true,
+        };
+    }
     componentDidMount() {
         const { dispatch } = this.props as any;
         dispatch(fetchRanking());
 
+        this.interval = setInterval(() => {
+            this.setState({
+                screen: !this.state.screen,
+            })
+        }, this.INTERVAL_TIME);
     }
+
+    componentWillMount() {
+        clearInterval(this.interval);
+    }
+
     render(){
         const { ranking } = this.props as any;
-        const showInvite = false;
-        const showRanking = true;
+        const { screen } = this.state;
 
         return (
             <Wrapper>
-                {showInvite && (
+                {screen === true && (
                     <InviteView>
                         <div>
                             <InviteLogoSnake>
@@ -87,7 +112,7 @@ export class HallOfFame extends React.Component<{}> {
                     </InviteView>
                 )}
                
-                {showRanking && (
+                {screen === false && (
                     <RankingView>
                         <RankingHeader>
                             <RankingLogoSnake>
