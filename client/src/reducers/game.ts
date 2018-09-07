@@ -9,13 +9,15 @@ export class GameState {
     size: Vec;
     view: View;
     score: number;
+    speed: number;
 
     constructor() {
         this.snake = new Snake();
         this.fruit = new Vec(10, 15);
-        this.size = new Vec(20, 30);
+        this.size = new Vec(28, 33);
         this.score = 0;
         this.view = View.MAIN_MENU;
+        this.speed = 1;
     }
 
     clone() : GameState {
@@ -46,6 +48,7 @@ export class GameState {
         if (this.snake_has_eaten_fruit()) {
             this.snake.grow();
             this.score += 1;
+            this.speed *= 1.05;
         }
 
         return this
