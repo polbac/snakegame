@@ -64,14 +64,14 @@ export default class Repository {
         return new Promise((resolve, reject) => {
     
 
-            this.db.all(`SELECT * FROM users;`, (err: any, rows: any) => {
+            this.db.all(`SELECT * FROM users ORDER BY score DESC;`, (err: any, rows: any) => {
                 
                 console.log('rows', rows);
                 console.log('err', err);
 
                 if (rows !== undefined) {
                     resolve(rows);
-                }
+                } 
 
                 if (err !== undefined) {
                     console.log(`can't list ranking`);

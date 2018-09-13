@@ -34,7 +34,7 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
             clearInterval(this.interval);
         }
 
-        this.interval = setInterval(() => this.tick(), 500 / game.speed);
+        this.interval = setInterval(() => this.tick(), 150 / game.speed);
     }
 
     componentWillUnmount() {
