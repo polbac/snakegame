@@ -1,9 +1,9 @@
 
 export enum GameEvent {
-    START = 'start',
-    HERO_MOVE = 'heroMove',
-    FRUIT_EATEN = 'fruitEaten',
-    END = 'end',
-    SHOW_MAIN_MENU = 'mainMenu',
-    TICK = 'tick'
+    START,
+    HERO_MOVE,
+    FRUIT_EATEN,
+    END,
+    SHOW_MAIN_MENU,
+    TICK,
 }

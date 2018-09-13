@@ -42,7 +42,7 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
 
     componentDidUpdate() {
         
-        const { snake, fruit } = (this.props as any)[this.props.target];
+        const { snake, fruit } = (this.props as any)[this.props.target as any];
 
         if (snake !== undefined) {
             this.player.x = this.mapRealPosition(snake.head).x;
@@ -72,10 +72,9 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
     render() {
         let user: any = {};
 
-        let { snake } = (this.props as any)[this.props.target];
+        let { snake } = (this.props as any)[this.props.target as any];
 
         if (this.props.target === 'game') {
-
             user = this.props.authenticate.session;
         }
 
@@ -89,7 +88,6 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
             }
             user = this.props.live.live.authenticate.session;
             snake = this.props.live.live.game.snake;
-            
         }
 
 
@@ -104,6 +102,7 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
                 </div>
                
                 <canvas style={{ height: window.innerWidth * this.SCENE_MAP.y / this.SCENE_MAP.x , width: 'calc(100% - 40px)', position: 'fixed' }} id={ this.state.canvasId }></canvas>
+
                 <div className={style.gameStatus}>
                     <div className={style.profile}>
                         <Image8Bit src={user.avatar} squares={58}/>

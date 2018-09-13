@@ -3,7 +3,7 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": false
   },
   
   "files": [
@@ -16,8 +16,5 @@
   ],
   "exclude": [
     "node_modules"
-  ],
-  "paths": {
-    "commons/*" : ["../commons/*"]
-  }
+  ]
 }
