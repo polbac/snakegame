@@ -10,6 +10,7 @@ export class GameState {
     view: View;
     score: number;
     speed: number;
+    fruit_eaten_recently: boolean;
 
     constructor() {
         this.snake = new Snake();
@@ -18,6 +19,7 @@ export class GameState {
         this.score = 0;
         this.view = View.MAIN_MENU;
         this.speed = 1;
+        this.fruit_eaten_recently = false;
     }
 
     clone() : GameState {
@@ -27,6 +29,7 @@ export class GameState {
         c.size = this.size.clone();
         c.score = this.score;
         c.view = this.view;
+        c.fruit_eaten_recently = this.fruit_eaten_recently;
         return c
     }
 
@@ -44,8 +47,12 @@ export class GameState {
         this.fruit = possible_coordinates[Math.floor(rand * possible_coordinates.length)];
     }
 
-    snake_has_eaten_fruit() : boolean {
+    snake_is_eating_fruit() : boolean {
         return this.snake.head.equals(this.fruit);
+    }
+
+    snake_has_eaten_fruit_recently() : boolean {
+        return this.fruit_eaten_recently
     }
 
     tick = () : GameState => {
@@ -55,11 +62,15 @@ export class GameState {
 
         this.snake.move(this.size);
 
-        if (this.snake_has_eaten_fruit()) {
+        if (this.snake_is_eating_fruit()) {
+            console.log("FRUIIIIIIIIIIIIIIIIIIT");
             this.snake.grow();
             this.score += 1;
             this.speed *= 1.05;
             this.randomize_fruit();
+            this.fruit_eaten_recently = true;
+        } else {
+            this.fruit_eaten_recently = false;
         }
 
         return this
@@ -95,8 +106,8 @@ export class Snake {
         this.body = [this.head, ...body];
 
         let head = this.head.clone().add(this.direction);
-        head.x = head.x % mapSize.x;
-        head.y = head.y % mapSize.y;
+        head.x = (head.x + mapSize.x) % mapSize.x;
+        head.y = (head.y + mapSize.y) % mapSize.y;
         this.head = head;
     }
 

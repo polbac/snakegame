@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { startGame, tick, endGame } from '../../actions/game';
+import { startGame, tick, eatFruit, endGame } from '../../actions/game';
 
 type GameEngineProps = {
 
@@ -47,6 +47,12 @@ export class GameEngine extends React.Component<GameEngineProps, GameEngineState
 
         if (this.currentSpeed !== game.speed) {
             this.updateInterval();
+        }
+
+        if (game.snake_has_eaten_fruit_recently()) { 
+            dispatch(
+                eatFruit()
+            );
         }
 
         if (game.ended()) { 
