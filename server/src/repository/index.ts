@@ -1,6 +1,6 @@
 
 import * as sqlite3 from 'sqlite3';
-import { User } from '../types/user';
+import { User } from '../../../commons/types/user';
 
 export default class Repository {
 

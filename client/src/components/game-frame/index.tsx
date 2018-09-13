@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Image8Bit } from '../Image8bit';
 const uniqid = require('uniqid');
 import * as style from './style.css';
-import { Vec } from '../../types/vector';
+import { Vec } from 'commons/types/vector';
 
 type GameFrameState = {
     canvasId: string;

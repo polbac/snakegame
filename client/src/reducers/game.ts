@@ -1,6 +1,6 @@
-import { GameEvent } from '../types/game-event';
-import { View } from '../types/view';
-import { Vec } from '../types/vector';
+import { GameEvent } from 'commons/types/game-event';
+import { View } from 'commons/types/view';
+import { Vec } from 'commons/types/vector';
 import * as _ from 'lodash';
 
 export class GameState {

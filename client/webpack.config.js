@@ -31,6 +31,7 @@ module.exports = {
     mainFields: ['module', 'browser', 'main'],
     alias: {
       app: path.resolve(__dirname, 'src/app/'),
+      commons: path.resolve(__dirname, '../commons/'),
     }
   },
   module: {
@@ -41,7 +42,7 @@ module.exports = {
         use: [
           !isProduction && {
             loader: 'babel-loader',
-            options: { plugins: ['react-hot-loader/babel'] }
+            // options: { plugins: ['react-hot-loader/babel'] }
           },
           'ts-loader'
         ].filter(Boolean)

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { AuthenticationProtection } from '../../components/authentication-protection';
-import { View } from '../../types/view';
+import { View } from 'commons/types/view';
 import { MainMenu } from '../../components/main-menu';
 import { UserInput } from '../../components/user-input';
 import { GameFrame } from '../../components/game-frame';

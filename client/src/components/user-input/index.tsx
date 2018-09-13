@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as Swipeable from 'react-swipeable'
 
 import { heroMove } from '../../actions/game';
-import { Vec } from '../../types/vector';
+import { Vec } from 'commons/types/vector';
 import { Content } from '../layout'; 
 
 const mapStateToProps = (store: any) => store.game;

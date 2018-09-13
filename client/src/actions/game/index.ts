@@ -1,5 +1,5 @@
-import { GameEvent } from './../../types/game-event';
-import { Vec } from '../../types/vector';
+import { GameEvent } from 'commons/types/game-event';
+import { Vec } from 'commons/types/vector';
 
 export const showMainMenu = () => {
     return {
