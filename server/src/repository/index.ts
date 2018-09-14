@@ -46,7 +46,6 @@ export default class Repository {
                 VALUES ('${id}', '${name}', '${avatar}', '${username}', '${headline}')
             `, (res: any, err: any) => {
                 if (res !== undefined) {
-                    console.log(res);
                     console.log(`user ${user} updated/created ok!`);
                     resolve();
                 }
@@ -64,9 +63,6 @@ export default class Repository {
     
 
             this.db.all(`SELECT * FROM users ORDER BY score DESC;`, (err: any, rows: any) => {
-                
-                console.log('rows', rows);
-                console.log('err', err);
 
                 if (rows !== undefined) {
                     resolve(rows);
