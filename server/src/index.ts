@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
 app.get('/', function (req, res) {
   res.send('hello world');
 });
-console.log('siiiii');
+
 app.post('/authenticate', async (req, res) => {
   try {
     await repository.createUser(mapUserRequest(req.body));

@@ -1,6 +1,5 @@
-
+import { User } from 'commons/types/user';
 import * as sqlite3 from 'sqlite3';
-import { User } from '../../../commons/types/user';
 
 export default class Repository {
 
@@ -87,7 +86,11 @@ export default class Repository {
             this.db.all(`SELECT * FROM users WHERE id = '${id}';`, (err: any, rows: any) => {
 
                 if (rows !== undefined) {
-                    console.log(rows[0]);
+                    
+                    if (rows[0].score === null) {
+                        rows[0].score = 0;
+                    }
+
                     resolve({
                         ...rows[0],
                         ranking: Math.floor(Math.random()*10)
