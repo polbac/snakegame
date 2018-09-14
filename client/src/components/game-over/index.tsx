@@ -48,8 +48,8 @@ type GameOverState = {
 export class GameOver extends React.Component<GameOverProps, GameOverState> {
 
     render(){
-        const { dispatch } = this.props as any;
-       
+        const { dispatch, game } = this.props as any;
+       console.log(this.props)
         return (
             <Content over>
                 <CenterVertical>
@@ -59,11 +59,11 @@ export class GameOver extends React.Component<GameOverProps, GameOverState> {
                         </Title>
                         <ScoreBlock>
                             <div>SCORE</div>
-                            <div>234567</div>
+                            <div>{game.score}</div>
                         </ScoreBlock>
                        <RankBlock>
                             <div>RANK</div>
-                            <div>340</div>
+                            <div>{StorageEvent}</div>
                        </RankBlock>                       
                         <ButtonsContainer>
                             <Button onClick={ () => dispatch(navigateToGame()) }>Volver a jugar</Button>
