@@ -8,6 +8,7 @@ import { showMainMenu } from '../../actions/game';
 import { connect } from 'react-redux';
 
 
+
 const Title = styled.div`
     font-size: 35px;
     font-weight: normal;
@@ -48,8 +49,10 @@ type GameOverState = {
 export class GameOver extends React.Component<GameOverProps, GameOverState> {
 
     render(){
-        const { dispatch, game } = this.props as any;
-       console.log(this.props)
+        const { dispatch, game, authenticate } = this.props as any;
+
+        const session = authenticate.session;
+
         return (
             <Content over>
                 <CenterVertical>
@@ -63,7 +66,7 @@ export class GameOver extends React.Component<GameOverProps, GameOverState> {
                         </ScoreBlock>
                        <RankBlock>
                             <div>RANK</div>
-                            <div>{StorageEvent}</div>
+                            <div>{session.ranking}</div>
                        </RankBlock>                       
                         <ButtonsContainer>
                             <Button onClick={ () => dispatch(navigateToGame()) }>Volver a jugar</Button>
