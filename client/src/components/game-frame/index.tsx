@@ -149,6 +149,7 @@ export class GameFrame extends React.Component<GameFrameProps, GameFrameState> {
         this.pixiApp = new PIXI.Application(window.innerWidth, window.innerHeight, {
             view: document.getElementById(this.state.canvasId) as HTMLCanvasElement,
         });
+
         this.pixiApp.renderer.backgroundColor = 0xffffff;
         
         this.player = PIXI.Sprite.fromImage('assets/images/head.png');
