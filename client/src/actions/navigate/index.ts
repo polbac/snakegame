@@ -1,4 +1,4 @@
-import { GameEvent } from '../../types/game-event';
+import { GameEvent } from 'commons/types/game-event';
 
 export const navigateToGame = () => {
     return {

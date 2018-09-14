@@ -1,5 +1,5 @@
-import { GameEvent } from '../../types/game-event';
-import { SocketEvent } from '../../types/socket-event';
+import { GameEvent } from 'commons/types/game-event';
+import { SocketEvent } from 'commons/types/socket-event';
 import * as ioClient from 'socket.io-client'
 import config from '../../config';
 

@@ -1,1 +1,0 @@
-export const bodyFont = '"Space Mono", monospace';
