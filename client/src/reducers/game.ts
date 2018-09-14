@@ -63,7 +63,6 @@ export class GameState {
         this.snake.move(this.size);
 
         if (this.snake_is_eating_fruit()) {
-            console.log("FRUIIIIIIIIIIIIIIIIIIT");
             this.snake.grow();
             this.score += 1;
             this.speed *= 1.05;
