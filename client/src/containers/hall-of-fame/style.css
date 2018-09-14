@@ -1,0 +1,94 @@
+
+.inviteView {
+    width: 100%;
+    height: 100vh;
+    padding:0 60px;
+    display:flex;
+    align-items:center;
+    text-align:center;
+    justify-content:center;
+}
+
+.inviteLogoSnake {
+    max-width:980px;
+    margin: 0 auto 45px auto;
+    text-align:center;
+}
+
+
+.title{
+    font-size: 36px;
+    color: #4a90e2;
+    margin:48px auto 80px auto;
+    max-width: 1000px;
+} 
+
+@media (max-width: 768px) {
+    .title {
+        font-size:15px;
+        margin:15px auto 20px auto;
+        max-width: 300px;
+    }
+}
+
+.qrCode{
+    background-color: #ffffff;
+    border: solid 3px #3684c6;
+    padding: 45px;
+}
+
+.qrCode canvas {
+    border:none;
+}
+.rankingView {
+    width: 100%;
+    height: 100vh;
+    padding:35px 85px 45px 85px;
+}
+
+.rankingHeader {
+    width: 100%;
+    display:block;
+    margin-bottom:30px;
+}
+
+.rankingLogoSnake {
+    width:475px;
+    display:inline-block;
+    vertical-align:middle;
+}
+
+
+.rankingHeaderLabel {
+    display:inline-block;
+    text-align:right;
+    vertical-align:middle;
+    width: calc(100% - 480px);
+}
+
+.rankingHeaderLabelTop {
+    font-size: 60px;
+    font-weight: bold;
+    display:inline-block;
+    color: #3684c6;
+    margin-right:20px;
+    text-shadow: 3px 3px 0 #d1e8fc;
+}
+.rankingHeaderLabelNumber {
+    font-size: 60px;
+    font-weight: bold;
+    display:inline-block;
+    color: #ffd56b;
+    text-shadow: 3px 3px 0 #e8696b;
+}
+.link{
+    font-family: SpaceMono;
+    font-size: 45px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
